@@ -24,13 +24,14 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.Calendar;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link fragment_main#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class fragment_main extends Fragment {
     private static final String ARG_PARAM1 = "param1";
+
+
+
+
+
+
     private static final String ARG_PARAM2 = "param2";
     private static final String url = "jdbc:mysql://192.168.183.48:3305/test?characterEncoding=latin1&autoReconnect=true&useSSL=false";
     private static final String user = "android3";
