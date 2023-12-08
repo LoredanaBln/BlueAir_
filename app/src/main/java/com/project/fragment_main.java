@@ -30,14 +30,11 @@ import java.util.Calendar;
  * create an instance of this fragment.
  */
 public class fragment_main extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private static final String url = "jdbc:mysql://192.168.183.48:3306/test?characterEncoding=latin1";
-    private static final String user = "android";
-    private static final String pass = "Octombrie-14";
+    private static final String url = "jdbc:mysql://192.168.183.48:3305/test?characterEncoding=latin1&autoReconnect=true&useSSL=false";
+    private static final String user = "android3";
+    private static final String pass = "password";
 
     private Spinner spinnerFrom, spinnerTo, spinnerClass;
     private TextView titleReturn;
@@ -205,9 +202,9 @@ public class fragment_main extends Fragment {
                 Connection con = DriverManager.getConnection(url, user, pass);
                 System.out.println("Databaseection success");
 
-                String result = "Database Connection Successful\n";
+                String result = "";
                 Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM flight where flightcol1 = 123");
+                ResultSet rs = st.executeQuery("SELECT * from new_table where flight = \"asdas\"");
                 ResultSetMetaData rsmd = rs.getMetaData();
 
                 while (rs.next()) {
