@@ -7,4 +7,9 @@
     <color name="blue1">#237389</color>
     <color name="blue2">#0e5879</color>
     <color name="greenish">#e4f2ed</color>
+    <color name="white_blue">#e1eff1</color>
+    <color name="light_blue">#7fb4bd</color>
+    <color name="dark_blue">#1c3656</color>
+    <color name="dark_grey">#1c3656</color>
+
 </resources>

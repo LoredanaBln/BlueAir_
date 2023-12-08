@@ -61,20 +61,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="152dp"
-        android:fontFamily="sans-serif-medium"
         android:text="Register"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        style="@style/titleText"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonReg"
-        style="@style/Widget.Material3.Button"
+        style="@style/blueUnselected"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginBottom="156dp"

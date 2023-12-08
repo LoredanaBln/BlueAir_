@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="blueSelected">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:background">@drawable/rounded_corner_blue</item>
+        <item name="android:backgroundTintMode">src_in</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:fontFamily">@font/manrope_light</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="blueUnselected">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:background">@drawable/rounded_corner_white</item>
+        <item name="android:backgroundTintMode">src_in</item>
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:fontFamily">@font/manrope_light</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="simpleText">
+       <item name="android:clickable">false</item>
+        <item name="android:contextClickable">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:editable">false</item>
+        <item name="android:fontFamily">@font/manrope_light</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">#00FEF0F0</item>
+    </style>
+    <style name="titleText">
+        <item name="android:clickable">false</item>
+        <item name="android:contextClickable">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:editable">false</item>
+        <item name="android:fontFamily">@font/oxygen</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textColor">@color/white_blue</item>
+        <item name="android:textSize">48sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">@color/black</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">30</item>
+        <item name="android:background">#00FEF0F0</item>
+    </style>
+    <style name="datepicker">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/dark_grey</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:fontFamily">@font/oxygen</item>
+    </style>
+</resources>
