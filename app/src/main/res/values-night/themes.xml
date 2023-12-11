@@ -6,7 +6,7 @@
         <item name="android:textColorHint">@color/dark_blue</item>
         <item name="android:textColor">@color/dark_blue</item>
         <item name="android:colorPrimary">@color/dark_blue</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">#00FFFFFF</item>
         <item name="android:datePickerDialogTheme">@style/datepicker</item>
 
     </style>

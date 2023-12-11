@@ -109,9 +109,6 @@ public class fragment_main extends Fragment {
                 titleReturn.setVisibility(View.VISIBLE);
 
                 System.out.println("Clicked");
-                ConnectMySql connectMySql = new ConnectMySql();
-                connectMySql.execute("");
-
             }
         });
 
