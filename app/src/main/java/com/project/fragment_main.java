@@ -27,15 +27,10 @@ import java.util.Calendar;
 public class fragment_main extends Fragment {
     private static final String ARG_PARAM1 = "param1";
 
-
-
-
-
-
     private static final String ARG_PARAM2 = "param2";
-    private static final String url = "jdbc:mysql://192.168.183.48:3305/test?characterEncoding=latin1&autoReconnect=true&useSSL=false";
-    private static final String user = "android3";
-    private static final String pass = "password";
+    private static final String url = "jdbc:mysql://192.168.100.122:3306/project?characterEncoding=latin1&autoReconnect=true&useSSL=false";
+    private static final String user = "admin";
+    private static final String pass = "octombrie14";
 
     private Spinner spinnerFrom, spinnerTo, spinnerClass;
     private TextView titleReturn;
@@ -122,6 +117,13 @@ public class fragment_main extends Fragment {
 
         buttonOneway.setOnClickListener(new View.OnClickListener() {
             @Override
+
+
+
+
+
+
+
             public void onClick(View v) {
                 buttonOneway.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.rounded_corner_blue, null));
                 buttonOneway.setTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
@@ -205,7 +207,7 @@ public class fragment_main extends Fragment {
 
                 String result = "";
                 Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * from new_table where flight = \"asdas\"");
+                ResultSet rs = st.executeQuery("SELECT * from users where FullName = \"Joe Biden\"");
                 ResultSetMetaData rsmd = rs.getMetaData();
 
                 while (rs.next()) {
