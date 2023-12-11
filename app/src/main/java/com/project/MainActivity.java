@@ -21,9 +21,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Spinner spinnerFrom, spinnerTo, spinnerClass;
     private TextView titleReturn;
     private Button buttonRoundTrip, buttonOneway, textDepart, textReturn;
-    private static final String url = "jdbc:mysql://127.0.0.1/sakila";
-    private static final String user = "root";
-    private static final String pass = "octombrie14";
 
     //sql
     private Connection connect;
