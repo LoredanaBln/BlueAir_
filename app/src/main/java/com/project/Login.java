@@ -3,17 +3,30 @@ package com.project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+
 public class Login extends AppCompatActivity {
+
+    private static final String url = "jdbc:mysql://192.168.100.122:3306/project?characterEncoding=latin1&autoReconnect=true&useSSL=false";
+    private static final String user = "admin";
+    private static final String pass = "octombrie14";
 
     TextView btn;
     private TextView inputEmail2, inputPassword2;
     Button loginButton;
+    private static String password;
+    public static  String email, accountName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +57,16 @@ public class Login extends AppCompatActivity {
         String password = inputPassword2.getText().toString();
 
         if(email.isEmpty() || !email.contains("@")){
-            showError((TextView)inputEmail2, "Invalid email");
+            showError((TextView)inputEmail2, "Invalid email!");
         }
         if(password.isEmpty())
-            showError((TextView)inputPassword2, "This field cannot be empty");
+            showError((TextView)inputPassword2, "This field cannot be empty!");
         else{
-            Toast.makeText(this, "OkOK", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "All good!", Toast.LENGTH_SHORT).show();
+            this.email = inputEmail2.getText().toString();
+            this.password = inputPassword2.getText().toString();
+            Login.ConnectMySql connectMySql = new Login.ConnectMySql();
+            connectMySql.execute("");
         }
     }
 
@@ -57,4 +74,49 @@ public class Login extends AppCompatActivity {
         input.setError(s);
         input.requestFocus();
     }
+    private class ConnectMySql extends AsyncTask<String, Void, String> {
+        String res = "";
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection(url, user, pass);
+                System.out.println("Databaseection success");
+
+                String result = "";
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery("SELECT * from users where Email = \"" + email + "\" and Password = \"" + password + "\"");
+                System.out.println("SELECT * from users where Email = \"" + email + "\" and Password = \"" + password + "\"");
+                ResultSetMetaData rsmd = rs.getMetaData();
+
+                while (rs.next()) {
+                    result = rs.getString(5).toString() + "\n";
+                }
+                res = result;
+            } catch (Exception e) {
+                e.printStackTrace();
+                res = e.toString();
+            }
+            return res;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if(result != ""){
+                accountName = result;
+                startActivity(new Intent(Login.this, MainActivity.class));
+            }
+            else{
+                showError((TextView)inputPassword2, "Wrong password or email.");
+
+            }
+        }
+    }
+
 }
