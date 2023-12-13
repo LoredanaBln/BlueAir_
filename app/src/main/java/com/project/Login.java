@@ -23,8 +23,10 @@ public class Login extends AppCompatActivity {
     private static final String pass = "octombrie14";
 
     TextView btn;
+    TextView forgotPassword;
     private TextView inputEmail2, inputPassword2;
     Button loginButton;
+    Button test;
     private static String password;
     public static  String email, accountName;
 
@@ -36,6 +38,8 @@ public class Login extends AppCompatActivity {
         inputEmail2 = findViewById(R.id.inputEmail2);
         inputPassword2 = findViewById(R.id.inputPassword2);
         loginButton = findViewById(R.id.buttonLogin);
+        test = findViewById(R.id.test);
+        forgotPassword = findViewById(R.id.forgotPasswordtext);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +53,21 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Login.this, Register.class));
+
+            }
+        });
+
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login.this, Ticket_List.class));
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login.this, Forgot_Password.class));
             }
         });
     }
