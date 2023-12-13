@@ -130,6 +130,7 @@ public class Login extends AppCompatActivity {
             if(result != ""){
                 accountName = result;
                 startActivity(new Intent(Login.this, MainActivity.class));
+                finish();
             }
             else{
                 showError((TextView)inputPassword2, "Wrong password or email.");

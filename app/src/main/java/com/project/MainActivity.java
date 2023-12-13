@@ -1,5 +1,6 @@
 package com.project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,10 +57,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_main()).commit();
-
-        drawerLayout.closeDrawer(GravityCompat.START);
+        if(item.getItemId() == R.id.nav_home) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_main()).commit();
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else if(item.getItemId() == R.id.nav_logout){
+            startActivity(new Intent(MainActivity.this, Login.class));
+            finish();
+        }
+        else if(item.getItemId() == R.id.nav_cart){
+            // TODO ADD MENU FOR CURRENT CART
+        }
+        else if(item.getItemId() == R.id.nav_tickets){
+            //TODO ADD MENU FOR BOOKED TICKETS
+        }
+        else if(item.getItemId() == R.id.nav_about){
+            //TODO ADD MENU FOR ABOUT SECTION
+        }
         return true;
     }
     @Override
