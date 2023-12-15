@@ -24,7 +24,6 @@ public class Login extends AppCompatActivity {
     private static final String pass = "octombrie14";
 
     TextView btn;
-    TextView forgotPassword;
     private TextView inputEmail2, inputPassword2;
     Button loginButton;
     Button test;
@@ -40,7 +39,6 @@ public class Login extends AppCompatActivity {
         inputPassword2 = findViewById(R.id.inputPassword2);
         loginButton = findViewById(R.id.buttonLogin);
         test = findViewById(R.id.test);
-        forgotPassword = findViewById(R.id.forgotPasswordtext);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,12 +63,6 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Login.this, Forgot_Password.class));
-            }
-        });
     }
     private void checkCredentials(){
         String email = inputEmail2.getText().toString();

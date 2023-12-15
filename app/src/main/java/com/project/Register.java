@@ -87,7 +87,7 @@ public class Register extends AppCompatActivity {
             showError((EditText) inputConfirmPassword, "Password doesn't match");
         }
         else {
-            Toast.makeText(this, "Creating Accout!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Creating Account!", Toast.LENGTH_SHORT).show();
             accEmail = email;
             accPass = password;
             accUser = username;

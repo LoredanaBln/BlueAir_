@@ -32,6 +32,23 @@
         </TextView>
 
         <TextView
+            android:id="@+id/ticket_company"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Wizz"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.931">
+
+        </TextView>
+
+        <TextView
             android:id="@+id/ticket_arrival"
             style="@style/titleText"
             android:layout_width="0dp"
@@ -40,10 +57,47 @@
             android:text="London"
             android:textAlignment="textEnd"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent">
+
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/ticket_price"
+            android:layout_width="41dp"
+            android:layout_height="31dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:text="500"
+            android:textAlignment="gravity"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ticket_date_arrive"
+            app:layout_constraintVertical_bias="0.652">
+
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/ticket_arrival2"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="€"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ticket_price"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.911">
 
 
         </TextView>
@@ -72,11 +126,13 @@
             style="@style/simpleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="52dp"
             android:text="1h 20m"
             android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ticket_date_arrive"
-            app:layout_constraintStart_toEndOf="@+id/ticket_date_depart"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toEndOf="@+id/ticket_date_depart" />
 
         <TextView
             android:id="@+id/ticket_date_arrive"
