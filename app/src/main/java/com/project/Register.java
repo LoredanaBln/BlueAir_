@@ -19,9 +19,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
 public class Register extends AppCompatActivity {
-    private static final String url = "jdbc:mysql://192.168.100.122:3306/project?characterEncoding=latin1&autoReconnect=true&useSSL=false";
-    private static final String user = "admin";
-    private static final String pass = "octombrie14";
+    private static final String url = "jdbc:mysql://192.168.201.99:3305/project_airline?characterEncoding=latin1&autoReconnect=true&useSSL=false";
+    private static final String user = "admin1";
+    private static final String pass = "ianuarie31";
 
     TextView btn;
     private TextView inputName, inputEmail, inputPassword, inputConfirmPassword;
@@ -86,7 +86,7 @@ public class Register extends AppCompatActivity {
             showError((EditText) inputConfirmPassword, "Password doesn't match");
         }
         else {
-            Toast.makeText(this, "Creating Accout!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Creating Account!", Toast.LENGTH_SHORT).show();
             accEmail = email;
             accPass = password;
             accUser = username;
@@ -120,11 +120,14 @@ public class Register extends AppCompatActivity {
 
                 String result = "";
                 Statement st = con.createStatement();
-                CallableStatement execProc = con.prepareCall("CALL InsertUserProcedure(?,?,?,?)");
+                CallableStatement execProc = con.prepareCall("CALL AddUser(?,?,?,?, ?, ?)");
                 execProc.setString(1, accUser);
                 execProc.setString(2, accEmail);
                 execProc.setString(3, accPass);
                 execProc.setString(4, accUser);
+                execProc.setString(5, "");
+                execProc.setString(6, "accUser");
+
                 execProc.execute();
 
                 res = result;
