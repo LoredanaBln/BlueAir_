@@ -29,9 +29,9 @@ public class fragment_main extends Fragment {
     private static final String ARG_PARAM1 = "param1";
 
     private static final String ARG_PARAM2 = "param2";
-    private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/project?characterEncoding=latin1&autoReconnect=true&useSSL=false";
-    private static final String user = "admin";
-    private static final String pass = "octombrie14";
+    private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/" + DBConnectionCredentials.databaseName +"?characterEncoding=latin1&autoReconnect=true&useSSL=false";
+    private static final String user = DBConnectionCredentials.username;
+    private static final String pass = DBConnectionCredentials.password;
 
     private Spinner spinnerFrom, spinnerTo, spinnerClass;
     private TextView titleReturn;
