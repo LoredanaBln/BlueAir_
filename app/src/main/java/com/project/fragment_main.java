@@ -60,12 +60,13 @@ public class fragment_main extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragmentmain, container, false);
     }
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
@@ -115,13 +116,6 @@ public class fragment_main extends Fragment {
 
         buttonOneway.setOnClickListener(new View.OnClickListener() {
             @Override
-
-
-
-
-
-
-
             public void onClick(View v) {
                 buttonOneway.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.rounded_corner_blue, null));
                 buttonOneway.setTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null));

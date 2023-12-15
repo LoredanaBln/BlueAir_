@@ -66,13 +66,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         }
         else if(item.getItemId() == R.id.nav_cart){
-            // TODO ADD MENU FOR CURRENT CART
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_cart()).commit();
+            drawerLayout.closeDrawer(GravityCompat.START);
+
         }
         else if(item.getItemId() == R.id.nav_tickets){
             //TODO ADD MENU FOR BOOKED TICKETS
         }
         else if(item.getItemId() == R.id.nav_about){
-            //TODO ADD MENU FOR ABOUT SECTION
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_aboutus()).commit();
+            drawerLayout.closeDrawer(GravityCompat.START);
         }
         return true;
     }

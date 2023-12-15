@@ -1,7 +1,9 @@
 package com.project;
 
 import android.os.Bundle;
+import android.view.View;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +19,8 @@ public class Ticket_List extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_tickets_list);
+    }
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
         recyclerView = findViewById(R.id.recycler_main);
 
         displayTickets();
