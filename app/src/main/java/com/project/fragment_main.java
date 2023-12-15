@@ -1,6 +1,7 @@
 package com.project;
 
 import android.app.DatePickerDialog;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,7 +29,7 @@ public class fragment_main extends Fragment {
     private static final String ARG_PARAM1 = "param1";
 
     private static final String ARG_PARAM2 = "param2";
-    private static final String url = "jdbc:mysql://192.168.100.122:3306/project?characterEncoding=latin1&autoReconnect=true&useSSL=false";
+    private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/project?characterEncoding=latin1&autoReconnect=true&useSSL=false";
     private static final String user = "admin";
     private static final String pass = "octombrie14";
 

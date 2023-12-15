@@ -1,8 +1,10 @@
 package com.project;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -17,8 +19,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
 public class Login extends AppCompatActivity {
-
-    private static final String url = "jdbc:mysql://192.168.100.122:3306/project?characterEncoding=latin1&autoReconnect=true&useSSL=false";
+    private static final String url = "jdbc:mysql://192.168.201.48:3306/project?characterEncoding=latin1&autoReconnect=true&useSSL=false";
     private static final String user = "admin";
     private static final String pass = "octombrie14";
 
@@ -103,6 +104,7 @@ public class Login extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+                System.out.println(url);
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con = DriverManager.getConnection(url, user, pass);
@@ -111,7 +113,6 @@ public class Login extends AppCompatActivity {
                 String result = "";
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery("SELECT * from users where Email = \"" + email + "\" and Password = \"" + password + "\"");
-                System.out.println("SELECT * from users where Email = \"" + email + "\" and Password = \"" + password + "\"");
                 ResultSetMetaData rsmd = rs.getMetaData();
 
                 while (rs.next()) {
@@ -129,6 +130,7 @@ public class Login extends AppCompatActivity {
         protected void onPostExecute(String result) {
             if(result != ""){
                 accountName = result;
+                System.out.println("Logged in with accout" + accountName);
                 startActivity(new Intent(Login.this, MainActivity.class));
                 finish();
             }

@@ -3,6 +3,7 @@ package com.project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +20,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
 public class Register extends AppCompatActivity {
-    private static final String url = "jdbc:mysql://192.168.100.122:3306/project?characterEncoding=latin1&autoReconnect=true&useSSL=false";
+    private static final String url = "jdbc:mysql://192.168.201.48:3306/project?characterEncoding=latin1&autoReconnect=true&useSSL=false";
     private static final String user = "admin";
     private static final String pass = "octombrie14";
 
@@ -120,11 +121,13 @@ public class Register extends AppCompatActivity {
 
                 String result = "";
                 Statement st = con.createStatement();
-                CallableStatement execProc = con.prepareCall("CALL InsertUserProcedure(?,?,?,?)");
+                CallableStatement execProc = con.prepareCall("CALL AddUser(?,?,?,?,?,?)");
                 execProc.setString(1, accUser);
                 execProc.setString(2, accEmail);
                 execProc.setString(3, accPass);
                 execProc.setString(4, accUser);
+                execProc.setString(5, "");
+                execProc.setString(6, "");
                 execProc.execute();
 
                 res = result;

@@ -10,7 +10,5 @@ public class ViewHolder extends RecyclerView.ViewHolder{
     public TextView Flight, Date;
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
-        Flight = itemView.findViewById(R.id.Flight);
-        Date = itemView.findViewById(R.id.Date);
     }
 }
