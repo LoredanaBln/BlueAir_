@@ -27,8 +27,12 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.Flight.setText(list.get(position).getFlightStart());
-        holder.Date.setText(list.get(position).getFlightDepartureDate());
+        holder.ticket_depart.setText(list.get(position).getTicket_depart());
+        holder.ticket_arrival.setText(list.get(position).getTicket_arrival());
+        holder.ticket_date_arrival.setText(list.get(position).getTicket_date_arrival());
+        holder.ticket_date_depart.setText(list.get(position).getTicket_date_depart());
+        holder.ticket_duration.setText(list.get(position).getTicket_duration());
+
     }
 
     @Override

@@ -53,8 +53,8 @@ public class ForgotPasswordTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        // Handle the result, update UI, show a toast, etc.
+
         Log.d("ForgotPasswordTask", "Result: " + result);
-        // You can display a Toast or update UI based on the result
+
     }
 }

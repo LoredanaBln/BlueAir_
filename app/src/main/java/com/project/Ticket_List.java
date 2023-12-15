@@ -27,6 +27,9 @@ public class Ticket_List extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this,1));
         listOfTickets = new ArrayList<>();
+        listOfTickets.add(new Ticket("Romania","Spain", "10.02.2024", "11.02.2024","10h"));
+        listOfTickets.add(new Ticket("France","Germany", "11.02.2024", "11.02.2024","2h"));
+        /*
         listOfTickets.add(new Ticket("romania", "12.02.2023"));
         listOfTickets.add(new Ticket("romania", "12.02.2023"));
         listOfTickets.add(new Ticket("romania", "12.02.2023"));
@@ -34,9 +37,7 @@ public class Ticket_List extends AppCompatActivity {
         listOfTickets.add(new Ticket("romania", "12.02.2023"));
         listOfTickets.add(new Ticket("romania", "12.02.2023"));
         listOfTickets.add(new Ticket("romania", "12.02.2023"));
-        listOfTickets.add(new Ticket("romania", "12.02.2023"));
-        listOfTickets.add(new Ticket("romania", "12.02.2023"));
-        listOfTickets.add(new Ticket("romania", "12.02.2023"));
+        listOfTickets.add(new Ticket("romania", "12.02.2023"));*/
         adapter = new Adapter(this, listOfTickets);
         recyclerView.setAdapter(adapter);
     }
