@@ -29,6 +29,7 @@ public class Login extends AppCompatActivity {
     Button test;
     private static String password;
     public static  String email, accountName;
+    public static int userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,8 +109,11 @@ public class Login extends AppCompatActivity {
                 ResultSetMetaData rsmd = rs.getMetaData();
 
                 while (rs.next()) {
-                    result = rs.getString(5).toString() + "\n";
+                    accountName =  rs.getString(5).toString();
+                    userID = rs.getInt(1);
+                    result = rs.getString(1);
                 }
+                rs.close();
                 res = result;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -121,7 +125,6 @@ public class Login extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if(result != ""){
-                accountName = result;
                 System.out.println("Logged in with accout" + accountName);
                 startActivity(new Intent(Login.this, MainActivity.class));
                 finish();
@@ -130,6 +133,7 @@ public class Login extends AppCompatActivity {
                 showError((TextView)inputPassword2, "Wrong password or email.");
 
             }
+
         }
     }
 
