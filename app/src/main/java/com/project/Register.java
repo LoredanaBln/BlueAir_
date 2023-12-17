@@ -20,9 +20,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
 public class Register extends AppCompatActivity {
-    private static final String url = "jdbc:mysql://192.168.201.48:3306/project?characterEncoding=latin1&autoReconnect=true&useSSL=false";
-    private static final String user = "admin";
-    private static final String pass = "octombrie14";
+    private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/" + DBConnectionCredentials.databaseName +"?characterEncoding=latin1&autoReconnect=true&useSSL=false";
+    private static final String user = DBConnectionCredentials.username;
+    private static final String pass = DBConnectionCredentials.password;
 
     TextView btn;
     private TextView inputName, inputEmail, inputPassword, inputConfirmPassword;

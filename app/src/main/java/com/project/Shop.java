@@ -1,24 +1,15 @@
 package com.project;
 
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.widget.Spinner;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.Statement;
+import android.os.Bundle;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Ticket_List extends AppCompatActivity {
-
+public class Shop extends AppCompatActivity {
     private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/" + DBConnectionCredentials.databaseName + "?characterEncoding=latin1&autoReconnect=true&useSSL=false";
     private static final String user = DBConnectionCredentials.username;
     private static final String pass = DBConnectionCredentials.password;
@@ -26,12 +17,11 @@ public class Ticket_List extends AppCompatActivity {
     RecyclerView recyclerView;
     List<Ticket> listOfTickets;
     Adapter adapter;
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_tickets_list);
+        setContentView(R.layout.activity_shop);
         recyclerView = findViewById(R.id.recycler_main);
-
         displayTickets();
     }
 
@@ -48,5 +38,4 @@ public class Ticket_List extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
     }
-
-    }
+}

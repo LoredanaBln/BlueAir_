@@ -1,6 +1,7 @@
 package com.project;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -29,13 +30,14 @@ public class fragment_main extends Fragment {
     private static final String ARG_PARAM1 = "param1";
 
     private static final String ARG_PARAM2 = "param2";
-    private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/project?characterEncoding=latin1&autoReconnect=true&useSSL=false";
-    private static final String user = "admin";
-    private static final String pass = "octombrie14";
+    private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/" + DBConnectionCredentials.databaseName +"?characterEncoding=latin1&autoReconnect=true&useSSL=false";
+    private static final String user = DBConnectionCredentials.username;
+    private static final String pass = DBConnectionCredentials.password;
 
     private Spinner spinnerFrom, spinnerTo, spinnerClass;
     private TextView titleReturn;
     private Button buttonRoundTrip, buttonOneway, textDepart, textReturn;
+    private Button buttonSearchFlights;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -96,6 +98,7 @@ public class fragment_main extends Fragment {
         titleReturn = (TextView) view.findViewById(R.id.textFrom4);
         buttonRoundTrip = (Button) view.findViewById(R.id.buttonRoundTrip);
         buttonOneway = (Button) view.findViewById(R.id.buttonRoundTrip2);
+        buttonSearchFlights = (Button)view.findViewById(R.id.buttonSearchFlight);
 
         buttonRoundTrip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,6 +184,14 @@ public class fragment_main extends Fragment {
                         },
                         year, month, day);
                 datePickerDialog.show();
+            }
+        });
+
+        buttonSearchFlights.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Shop.class);
+                startActivity(intent);
             }
         });
     }
