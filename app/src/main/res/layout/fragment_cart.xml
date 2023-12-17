@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Ticket_List"
+    tools:context=".fragment_cart"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#6DBAC6"
@@ -27,7 +27,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_main"
+            android:id="@+id/recycler_cart"
             android:layout_width="match_parent"
             android:layout_height="413dp"
             android:layout_margin="8dp"
@@ -36,15 +36,47 @@
             android:layout_marginBottom="16dp"
             android:paddingStart="8dp"
             android:paddingTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonCartCheckOut"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></androidx.recyclerview.widget.RecyclerView>
 
+        <Button
+            android:id="@+id/buttonCartCheckOut"
+            style="@style/blueUnselected"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Proceed to checkout"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.109"></androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintStart_toStartOf="parent" />
 
+        <TextView
+            android:id="@+id/textTot"
+            style="@style/simpleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/baseline_attach_money_24"
+            android:text="Total:"
+            app:layout_constraintBottom_toTopOf="@+id/buttonCartCheckOut"
+            app:layout_constraintStart_toStartOf="parent" />
 
+        <TextView
+            android:id="@+id/textTotalMoney"
+            style="@style/simpleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/oxygen"
+            android:text="69420"
+            android:textColor="#00E676"
+            app:layout_constraintBottom_toTopOf="@+id/buttonCartCheckOut"
+            app:layout_constraintStart_toEndOf="@+id/textTot" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -64,7 +96,7 @@
             style="@style/titleText"
             android:paddingStart="10dp"
             android:layout_weight="1"
-            android:text="Your bookings"
+            android:text="Your Cart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

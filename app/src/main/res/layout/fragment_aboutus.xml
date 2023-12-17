@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Ticket_List"
+    tools:context=".fragment_aboutus"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#6DBAC6"
@@ -26,24 +26,19 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         app:layout_constraintVertical_bias="0.0">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_main"
-            android:layout_width="match_parent"
-            android:layout_height="413dp"
-            android:layout_margin="8dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginBottom="16dp"
-            android:paddingStart="8dp"
-            android:paddingTop="8dp"
 
+        <TextView
+            android:id="@+id/textTot"
+            style="@style/simpleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/aboutUs"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.109"></androidx.recyclerview.widget.RecyclerView>
-
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -64,7 +59,7 @@
             style="@style/titleText"
             android:paddingStart="10dp"
             android:layout_weight="1"
-            android:text="Your bookings"
+            android:text="About Us"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
