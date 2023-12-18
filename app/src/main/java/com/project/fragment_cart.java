@@ -38,8 +38,7 @@ public class fragment_cart extends Fragment {
     Adapter adapter;
     public fragment_cart() {
         listOfTickets = new ArrayList<>();
-        fragment_cart.ConnectMySql connectMySql = new fragment_cart.ConnectMySql();
-        connectMySql.execute("");
+
     }
 
     public static fragment_cart newInstance(String param1, String param2) {
@@ -63,7 +62,8 @@ public class fragment_cart extends Fragment {
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.recycler_cart);
-        displayTickets();
+        fragment_cart.ConnectMySql connectMySql = new fragment_cart.ConnectMySql();
+        connectMySql.execute("");
 
     }
     public void displayTickets(){
@@ -71,10 +71,6 @@ public class fragment_cart extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
 
-        for(Ticket t : listOfTickets){
-            System.out.println("Sql" + t.ticket_depart +"\n");
-            System.out.println("IN VECTORRRRRRRRRRRRRRR");
-        }
         adapter = new Adapter(getActivity(), listOfTickets);
         recyclerView.setAdapter(adapter);
     }
@@ -104,9 +100,9 @@ public class fragment_cart extends Fragment {
                 while (rs.next()) {
                     String depart = rs.getString(3);
                     String arrive = rs.getString(5);
-                    String dateDepart = rs.getString(7).replaceAll("\\s.*", "");;
-                    String dateArrive = rs.getString(8).replaceAll("\\s.*", "");;
-                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, "3h", "Wizz"));
+                    String dateDepart = rs.getString(7).replaceAll("\\s.*", "");
+                    String dateArrive = rs.getString(8).replaceAll("\\s.*", "");
+                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, "3h", "Wizz", "22"));
                 }
                 res = result;
             } catch (Exception e) {
@@ -118,7 +114,7 @@ public class fragment_cart extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
-
+            displayTickets();
 
         }
     }
