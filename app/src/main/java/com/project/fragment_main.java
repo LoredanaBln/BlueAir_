@@ -24,6 +24,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class fragment_main extends Fragment {
