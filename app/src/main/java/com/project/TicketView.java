@@ -26,7 +26,7 @@ public class TicketView extends AppCompatActivity {
         String datDepart = getIntent().getStringExtra("DATE_DEPART");
         String dateArrival = getIntent().getStringExtra("DATE_ARRIVAL");
         String company = getIntent().getStringExtra("COMPANY");
-        String price = getIntent().getStringExtra("TICKET_PRICE");
+        String price = getIntent().getStringExtra("PRICE");
         //String class_ = getIntent().getStringExtra("CLASS");
 
         TextView ticketDepart = findViewById(R.id.ticketDeparture);
@@ -42,7 +42,7 @@ public class TicketView extends AppCompatActivity {
         ticketDepartDate.setText(datDepart);
         ticketArrivalDate.setText(dateArrival);
         ticketCompany.setText(company);
-        //ticketPrice.setText(price);
+        ticketPrice.setText(price);
 
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override

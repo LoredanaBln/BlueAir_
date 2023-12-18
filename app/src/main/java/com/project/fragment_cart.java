@@ -105,7 +105,7 @@ public class fragment_cart extends Fragment {
                     String arrive = rs.getString(5);
                     String dateDepart = rs.getString(7);
                     String dateArrive = rs.getString(8);
-                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateDepart, "3h", "Wizz"));
+                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateDepart, "3h", "Wizz", "30"));
                 }
                 res = result;
             } catch (Exception e) {

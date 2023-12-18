@@ -33,8 +33,8 @@ public class Shop extends AppCompatActivity implements RecyclerViewInterface {
 
         recyclerView.setHasFixedSize(true);
         listOfTickets = new ArrayList<>();
-        listOfTickets.add(new Ticket("Romania", "Spain", "10.02.2024", "11.02.2024", "10h", "WIZZ"));
-        listOfTickets.add(new Ticket("France", "Germany", "11.02.2024", "11.02.2024", "2h", "WIZZ"));
+        listOfTickets.add(new Ticket("Romania", "Spain", "10.02.2024", "11.02.2024", "10h", "WIZZ", "100"));
+        listOfTickets.add(new Ticket("France", "Germany", "11.02.2024", "11.02.2024", "2h", "WIZZ", "2220"));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Shop extends AppCompatActivity implements RecyclerViewInterface {
         intent.putExtra("DATE_DEPART", listOfTickets.get(position).getTicket_date_depart());
         intent.putExtra("DATE_ARRIVAL", listOfTickets.get(position).getTicket_date_arrival());
         intent.putExtra("COMPANY", listOfTickets.get(position).getTicket_company());
-        //intent.putExtra("PRICE", listOfTickets.get(position).getTicket_price());
+        intent.putExtra("PRICE", listOfTickets.get(position).getTicket_price());
 
 
         startActivity(intent);
