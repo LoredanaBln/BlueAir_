@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+//CLASS FOR VIEWING TICKET AFTER CLICKING ON ONE!
 public class TicketView extends AppCompatActivity {
     Button close;
     Button addToCart;
@@ -42,7 +43,7 @@ public class TicketView extends AppCompatActivity {
         ticketDepartDate.setText(datDepart);
         ticketArrivalDate.setText(dateArrival);
         ticketCompany.setText(company);
-        //ticketPrice.setText(price);
+        ticketPrice.setText(price);
 
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override

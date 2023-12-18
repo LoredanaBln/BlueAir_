@@ -39,8 +39,8 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.ViewHolderShop
         holder.ticket_arrival.setText(listOfTickets.get(position).getTicket_arrival());
         holder.ticket_date_arrival.setText(listOfTickets.get(position).getTicket_date_arrival());
         holder.ticket_date_depart.setText(listOfTickets.get(position).getTicket_date_depart());
-        holder.company.setText(listOfTickets.get(position).getTicket_duration());
-        holder.price.setText(listOfTickets.get(position).getTicket_duration());
+        holder.company.setText(listOfTickets.get(position).getTicket_company());
+        holder.price.setText(listOfTickets.get(position).getTicket_price());
     }
 
     @Override

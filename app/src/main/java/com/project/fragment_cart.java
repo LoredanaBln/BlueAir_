@@ -73,6 +73,7 @@ public class fragment_cart extends Fragment {
 
         for(Ticket t : listOfTickets){
             System.out.println("Sql" + t.ticket_depart +"\n");
+            System.out.println("IN VECTORRRRRRRRRRRRRRR");
         }
         adapter = new Adapter(getActivity(), listOfTickets);
         recyclerView.setAdapter(adapter);
@@ -103,9 +104,9 @@ public class fragment_cart extends Fragment {
                 while (rs.next()) {
                     String depart = rs.getString(3);
                     String arrive = rs.getString(5);
-                    String dateDepart = rs.getString(7);
-                    String dateArrive = rs.getString(8);
-                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateDepart, "3h", "Wizz"));
+                    String dateDepart = rs.getString(7).replaceAll("\\s.*", "");;
+                    String dateArrive = rs.getString(8).replaceAll("\\s.*", "");;
+                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, "3h", "Wizz"));
                 }
                 res = result;
             } catch (Exception e) {
