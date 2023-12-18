@@ -7,13 +7,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fragment_aboutus#newInstance} factory method to
+ * Use the {@link Fragment_aboutus#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_aboutus extends Fragment {
+public class Fragment_aboutus extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,9 +24,10 @@ public class fragment_aboutus extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    TextView txtAboutUs;
 
-    public fragment_aboutus() {
-        // Required empty public constructor
+    public Fragment_aboutus() {
+
     }
 
     /**
@@ -37,8 +39,8 @@ public class fragment_aboutus extends Fragment {
      * @return A new instance of fragment fragment_aboutus.
      */
     // TODO: Rename and change types and number of parameters
-    public static fragment_aboutus newInstance(String param1, String param2) {
-        fragment_aboutus fragment = new fragment_aboutus();
+    public static Fragment_aboutus newInstance(String param1, String param2) {
+        Fragment_aboutus fragment = new Fragment_aboutus();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

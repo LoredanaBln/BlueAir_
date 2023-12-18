@@ -3,7 +3,6 @@ package com.project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -15,11 +14,9 @@ import android.widget.Toast;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
-public class Register extends AppCompatActivity {
+public class Activity_register extends AppCompatActivity {
     private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/" + DBConnectionCredentials.databaseName +"?characterEncoding=latin1&autoReconnect=true&useSSL=false";
     private static final String user = DBConnectionCredentials.username;
     private static final String pass = DBConnectionCredentials.password;
@@ -52,7 +49,7 @@ public class Register extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Register.this, Login.class));
+                startActivity(new Intent(Activity_register.this, Activity_login.class));
             }
         });
     }
@@ -91,7 +88,7 @@ public class Register extends AppCompatActivity {
             accEmail = email;
             accPass = password;
             accUser = username;
-            Register.ConnectMySql connectMySql = new Register.ConnectMySql();
+            Activity_register.ConnectMySql connectMySql = new Activity_register.ConnectMySql();
             connectMySql.execute("");
 
         }
@@ -140,7 +137,7 @@ public class Register extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            startActivity(new Intent(Register.this, Login.class));
+            startActivity(new Intent(Activity_register.this, Activity_login.class));
         }
     }
 

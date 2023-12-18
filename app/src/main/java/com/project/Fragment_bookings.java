@@ -2,44 +2,42 @@ package com.project;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.sql.Connection;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
 
+public class Fragment_bookings extends Fragment {
 
-public class Fragment_cart extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/" + DBConnectionCredentials.databaseName +"?characterEncoding=latin1&autoReconnect=true&useSSL=false";
     private static final String user = DBConnectionCredentials.username;
     private static final String pass = DBConnectionCredentials.password;
 
-
     RecyclerView recyclerView;
     List<Ticket> listOfTickets;
     Adapter adapter;
-    public Fragment_cart() {
+
+
+    public Fragment_bookings() {
         listOfTickets = new ArrayList<>();
 
     }
-
     public static Fragment_cart newInstance(String param1, String param2) {
         Fragment_cart fragment = new Fragment_cart();
         Bundle args = new Bundle();
@@ -47,32 +45,31 @@ public class Fragment_cart extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+    }
+        public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_cart, container, false);
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                Bundle savedInstanceState) {
+
+            return inflater.inflate(R.layout.fragment_bookings, container, false);
+        }
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+            recyclerView = view.findViewById(R.id.recycler_cart);
+            Fragment_bookings.ConnectMySql connectMySql = new Fragment_bookings.ConnectMySql();
+            connectMySql.execute("");
     }
 
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        recyclerView = view.findViewById(R.id.recycler_cart);
-        Fragment_cart.ConnectMySql connectMySql = new Fragment_cart.ConnectMySql();
-        connectMySql.execute("");
+        public void displayTickets(){
 
-    }
-    public void displayTickets(){
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
-
-        adapter = new Adapter(getActivity(), listOfTickets);
-        recyclerView.setAdapter(adapter);
-    }
+            adapter = new Adapter(getActivity(), listOfTickets);
+            recyclerView.setAdapter(adapter);
+        }
 
     private class ConnectMySql extends AsyncTask<String, Void, String> {
         String res = "";
@@ -123,4 +120,4 @@ public class Fragment_cart extends Fragment {
         }
     }
 
-}
+    }

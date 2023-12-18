@@ -4,13 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterShop extends RecyclerView.Adapter<AdapterShop.ViewHolderShop> {
@@ -28,7 +26,7 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.ViewHolderShop
     @Override
     public AdapterShop.ViewHolderShop onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_view, parent, false);
+        View view = inflater.inflate(R.layout.ticket_recycler, parent, false);
 
         return new AdapterShop.ViewHolderShop(view, recyclerViewInterface);
     }
@@ -39,8 +37,8 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.ViewHolderShop
         holder.ticket_arrival.setText(listOfTickets.get(position).getTicket_arrival());
         holder.ticket_date_arrival.setText(listOfTickets.get(position).getTicket_date_arrival());
         holder.ticket_date_depart.setText(listOfTickets.get(position).getTicket_date_depart());
-        holder.company.setText(listOfTickets.get(position).getTicket_duration());
-        holder.price.setText(listOfTickets.get(position).getTicket_duration());
+        holder.company.setText(listOfTickets.get(position).getTicket_company());
+        holder.price.setText(listOfTickets.get(position).getTicket_price());
     }
 
     @Override

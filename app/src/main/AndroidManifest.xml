@@ -22,12 +22,12 @@
             android:name=".TicketView"
             android:exported="true" />
         <activity
-            android:name=".Shop"
+            android:name=".Fragment_shop"
             android:exported="true"
             android:label="@string/title_activity_shop"
             android:theme="@style/Theme.Project.NoActionBar" />
         <activity
-            android:name=".Login"
+            android:name=".Activity_login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,9 +46,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register" />
+        <activity android:name=".Activity_register" />
         <activity
-            android:name=".Ticket_List"
+            android:name=".Fragment_bookings"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

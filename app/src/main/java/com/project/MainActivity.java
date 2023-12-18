@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,10 +15,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
-import org.w3c.dom.Text;
-
-import java.sql.Connection;
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private TextView accName, accEmail;
     private DrawerLayout drawerLayout;
@@ -31,8 +25,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_layout);
         createDropMenu(savedInstanceState);
-        accName.setText(Login.accountName);
-        accEmail.setText(Login.email);
+        accName.setText(Activity_login.accountName);
+        accEmail.setText(Activity_login.email);
 
     }
 
@@ -50,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_main()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_home()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
         accName = headerView.findViewById(R.id.account_name);
@@ -59,23 +53,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.nav_home) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_main()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_home()).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
         }
         else if(item.getItemId() == R.id.nav_logout){
-            startActivity(new Intent(MainActivity.this, Login.class));
+            startActivity(new Intent(MainActivity.this, Activity_login.class));
             finish();
         }
         else if(item.getItemId() == R.id.nav_cart){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_cart()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_cart()).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
 
         }
         else if(item.getItemId() == R.id.nav_tickets){
-            //TODO ADD MENU FOR BOOKED TICKETS
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_bookings()).commit();
+            drawerLayout.closeDrawer(GravityCompat.START);
         }
         else if(item.getItemId() == R.id.nav_about){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_aboutus()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_aboutus()).commit();
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else if(item.getItemId() == R.id.nav_cars){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_cars()).commit();
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else if(item.getItemId() == R.id.nav_hotels){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_hotels()).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
         }
         return true;

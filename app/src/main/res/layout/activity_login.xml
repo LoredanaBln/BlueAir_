@@ -7,7 +7,7 @@
     android:background="@drawable/blur_dark"
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
-    tools:context=".Register">
+    tools:context=".Activity_register">
 
     <EditText
         android:id="@+id/inputEmail2"

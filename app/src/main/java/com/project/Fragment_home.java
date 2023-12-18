@@ -1,8 +1,6 @@
 package com.project;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,7 +24,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.Calendar;
 
-public class fragment_main extends Fragment {
+public class Fragment_home extends Fragment {
     private static final String ARG_PARAM1 = "param1";
 
     private static final String ARG_PARAM2 = "param2";
@@ -42,12 +40,12 @@ public class fragment_main extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    public fragment_main() {
+    public Fragment_home() {
         // Required empty public constructor
     }
 
-    public static fragment_main newInstance(String param1, String param2) {
-        fragment_main fragment = new fragment_main();
+    public static Fragment_home newInstance(String param1, String param2) {
+        Fragment_home fragment = new Fragment_home();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,7 +67,7 @@ public class fragment_main extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragmentmain, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
         createSpinners(view);
@@ -184,8 +182,8 @@ public class fragment_main extends Fragment {
         buttonSearchFlights.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Shop.class);
-                startActivity(intent);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_shop()).commit();
+
             }
         });
     }

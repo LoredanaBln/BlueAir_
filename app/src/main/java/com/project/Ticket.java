@@ -2,6 +2,7 @@ package com.project;
 
 import java.util.Date;
 
+//TICKET CLASS THAT HOLDS INFORMATION ABOUT THE TICKET
 public class Ticket {
     String ticket_depart;
     String ticket_arrival;
@@ -10,6 +11,7 @@ public class Ticket {
     String ticket_duration;
     String ticket_company;
     String ticket_price;
+
 
     public Ticket(String ticket_depart, String ticket_arrival, String ticket_date_depart, String ticket_date_arrival, String ticket_duration, String ticket_company, String ticket_price) {
         this.ticket_depart = ticket_depart;
@@ -20,7 +22,6 @@ public class Ticket {
         this.ticket_company = ticket_company;
         this.ticket_price = ticket_price;
     }
-
     public String getTicket_depart() {
         return ticket_depart;
     }

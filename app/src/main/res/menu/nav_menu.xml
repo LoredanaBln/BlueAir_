@@ -19,6 +19,14 @@
             android:id="@+id/nav_tickets"
             android:icon="@drawable/baseline_airplane_ticket_24"
             android:title="Bookings"/>
+        <item
+            android:id="@+id/nav_hotels"
+            android:icon="@drawable/baseline_airplane_ticket_24"
+            android:title="Hotels"/>
+        <item
+            android:id="@+id/nav_cars"
+            android:icon="@drawable/baseline_airplane_ticket_24"
+            android:title="Cars"/>
 
         <item
             android:id="@+id/nav_about"

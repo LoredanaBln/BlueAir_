@@ -22,7 +22,7 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view, parent, false));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.ticket_recycler, parent, false));
     }
 
     @Override

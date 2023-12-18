@@ -4,20 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+//CLASS FOR VIEWING TICKET AFTER CLICKING ON ONE!
 public class TicketView extends AppCompatActivity {
-    Button close;
     Button addToCart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ticket_view);
-        close = findViewById(R.id.buttonClose);
+        setContentView(R.layout.fragment_expanded_ticket);
         addToCart = findViewById(R.id.buttonAddToCart);
 
         //String name = getIntent().getStringExtra("NAME");
@@ -48,17 +46,9 @@ public class TicketView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addToCart.setVisibility(View.GONE);
-                close.setVisibility(View.GONE);
-                Fragment fragment = new fragment_cart();
+                Fragment fragment = new Fragment_cart();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, fragment).commit();
-            }
-        });
-
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(TicketView.this, Shop.class));
             }
         });
 

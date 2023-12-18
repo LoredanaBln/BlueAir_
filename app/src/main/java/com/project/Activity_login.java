@@ -1,10 +1,8 @@
 package com.project;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +16,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
-public class Login extends AppCompatActivity {
+public class Activity_login extends AppCompatActivity {
     private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/" + DBConnectionCredentials.databaseName +"?characterEncoding=latin1&autoReconnect=true&useSSL=false";
     private static final String user = DBConnectionCredentials.username;
     private static final String pass = DBConnectionCredentials.password;
@@ -52,7 +50,7 @@ public class Login extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Login.this, Register.class));
+                startActivity(new Intent(Activity_login.this, Activity_register.class));
 
             }
         });
@@ -60,7 +58,7 @@ public class Login extends AppCompatActivity {
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Login.this, Ticket_List.class));
+                startActivity(new Intent(Activity_login.this, Fragment_bookings.class));
             }
         });
 
@@ -78,7 +76,7 @@ public class Login extends AppCompatActivity {
             Toast.makeText(this, "All good!", Toast.LENGTH_SHORT).show();
             this.email = inputEmail2.getText().toString();
             this.password = inputPassword2.getText().toString();
-            Login.ConnectMySql connectMySql = new Login.ConnectMySql();
+            Activity_login.ConnectMySql connectMySql = new Activity_login.ConnectMySql();
             connectMySql.execute("");
         }
     }
@@ -126,7 +124,7 @@ public class Login extends AppCompatActivity {
         protected void onPostExecute(String result) {
             if(result != ""){
                 System.out.println("Logged in with accout" + accountName);
-                startActivity(new Intent(Login.this, MainActivity.class));
+                startActivity(new Intent(Activity_login.this, MainActivity.class));
                 finish();
             }
             else{

@@ -3,7 +3,6 @@ package com.project;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,28 +19,29 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link Fragment_cars#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class Fragment_cars extends Fragment {
 
-public class Fragment_cart extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
     private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/" + DBConnectionCredentials.databaseName +"?characterEncoding=latin1&autoReconnect=true&useSSL=false";
     private static final String user = DBConnectionCredentials.username;
     private static final String pass = DBConnectionCredentials.password;
 
-
     RecyclerView recyclerView;
     List<Ticket> listOfTickets;
     Adapter adapter;
-    public Fragment_cart() {
+    public Fragment_cars() {
         listOfTickets = new ArrayList<>();
-
     }
 
-    public static Fragment_cart newInstance(String param1, String param2) {
-        Fragment_cart fragment = new Fragment_cart();
+    public static Fragment_cars newInstance(String param1, String param2) {
+        Fragment_cars fragment = new Fragment_cars();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -50,21 +50,14 @@ public class Fragment_cart extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    public void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);}
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_cart, container, false);
+        return inflater.inflate(R.layout.fragment_cars, container, false);
     }
 
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        recyclerView = view.findViewById(R.id.recycler_cart);
-        Fragment_cart.ConnectMySql connectMySql = new Fragment_cart.ConnectMySql();
-        connectMySql.execute("");
-
-    }
     public void displayTickets(){
 
         recyclerView.setHasFixedSize(true);
@@ -73,7 +66,6 @@ public class Fragment_cart extends Fragment {
         adapter = new Adapter(getActivity(), listOfTickets);
         recyclerView.setAdapter(adapter);
     }
-
     private class ConnectMySql extends AsyncTask<String, Void, String> {
         String res = "";
 
@@ -122,5 +114,4 @@ public class Fragment_cart extends Fragment {
 
         }
     }
-
 }
