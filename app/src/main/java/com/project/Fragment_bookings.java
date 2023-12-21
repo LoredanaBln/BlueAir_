@@ -38,8 +38,8 @@ public class Fragment_bookings extends Fragment {
         listOfTickets = new ArrayList<>();
 
     }
-    public static Fragment_cart newInstance(String param1, String param2) {
-        Fragment_cart fragment = new Fragment_cart();
+    public static fragment_cart newInstance(String param1, String param2) {
+        fragment_cart fragment = new fragment_cart();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

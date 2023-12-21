@@ -40,28 +40,27 @@
 
         <TextView
             android:id="@+id/TextClass"
+            style="@style/simpleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/simpleText"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:drawableStart="@drawable/baseline_airline_seat_recline_extra_24"
             android:text="Class:"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textFrom3"
-            app:layout_constraintTop_toBottomOf="@+id/textDepart2" />
+            app:layout_constraintTop_toBottomOf="@+id/textDepart" />
 
         <TextView
             android:id="@+id/textFrom"
-            style = "@style/simpleText"
+            style="@style/simpleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:drawableStart="@drawable/outline_place_24"
             android:text="From:"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonRoundTrip" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textFrom3"
@@ -77,19 +76,6 @@
             app:layout_constraintTop_toBottomOf="@+id/spinnerTo" />
 
         <TextView
-            android:id="@+id/textFrom4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/simpleText"
-            android:layout_marginTop="16dp"
-            android:layout_weight="1"
-            android:drawableStart="@drawable/baseline_calendar_month_24"
-            android:text="Return:"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textFrom3"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerTo" />
-
-        <TextView
             android:id="@+id/textFrom2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,33 +86,6 @@
             android:text="To:"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnerFrom" />
-
-        <Button
-            android:id="@+id/buttonRoundTrip2"
-            style="@style/blueUnselected"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Oneway"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/buttonRoundTrip"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/buttonRoundTrip"
-            style="@style/blueSelected"
-            android:layout_width="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="1dp"
-            android:text="Round Trip"
-            android:textAllCaps="false"
-            app:layout_constraintEnd_toStartOf="@+id/buttonRoundTrip2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/buttonSearchFlight"
@@ -195,23 +154,9 @@
             android:inputType="date"
             android:paddingStart="10dp"
             android:textAlignment="viewStart"
-            app:layout_constraintEnd_toStartOf="@+id/textDepart2"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textFrom3" />
-
-        <Button
-            android:id="@+id/textDepart2"
-            style="@style/blueUnselected"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:hint="Return"
-            android:inputType="date"
-            android:paddingStart="10dp"
-            android:textAlignment="viewStart"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textDepart"
-            app:layout_constraintTop_toBottomOf="@+id/textFrom4" />
 
         <EditText
             android:id="@+id/editTextNumber"

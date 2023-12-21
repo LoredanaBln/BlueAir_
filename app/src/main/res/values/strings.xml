@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Project</string>
     <string-array name="flightClasses">
-        <item>Economic</item>
+        <item>Economy</item>
         <item>First</item>
         <item>Business</item>
     </string-array>

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Fragment_cart extends Fragment {
+public class fragment_cart extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,13 +35,12 @@ public class Fragment_cart extends Fragment {
     RecyclerView recyclerView;
     List<Ticket> listOfTickets;
     Adapter adapter;
-    public Fragment_cart() {
+    public fragment_cart() {
         listOfTickets = new ArrayList<>();
-
     }
 
-    public static Fragment_cart newInstance(String param1, String param2) {
-        Fragment_cart fragment = new Fragment_cart();
+    public static fragment_cart newInstance(String param1, String param2) {
+        fragment_cart fragment = new fragment_cart();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,7 +60,7 @@ public class Fragment_cart extends Fragment {
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.recycler_cart);
-        Fragment_cart.ConnectMySql connectMySql = new Fragment_cart.ConnectMySql();
+        fragment_cart.ConnectMySql connectMySql = new fragment_cart.ConnectMySql();
         connectMySql.execute("");
 
     }
@@ -92,20 +91,18 @@ public class Fragment_cart extends Fragment {
                 String result = "";
                 Statement st = con.createStatement();
                 // SELECTS ALL THE ITEMS IN THE USERS CART
-                ResultSet rs = st.executeQuery("SELECT flights.* FROM flights INNER JOIN cart ON flights.flightID = cart.idFlight WHERE cart.iduser = " + Activity_login.userID);
+                ResultSet rs = st.executeQuery("SELECT flights.*, airlines.AirlineName FROM flights INNER JOIN cart ON flights.flightID = cart.idFlight JOIN airlines ON flights.AirlineID = airlines.AirlineID WHERE cart.iduser = " + Activity_login.userID);
                 ResultSetMetaData rsmd = rs.getMetaData();
 
                 // FOR EACH ITEM SEARCH FOR THE FLIGHT AND ADD IT IN THE LIST
                 while (rs.next()) {
                     String depart = rs.getString(3);
                     String arrive = rs.getString(5);
-                    String dateDepart = rs.getString(7);
-                    String dateArrive = rs.getString(8);
-                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateDepart, "3h", "Wizz", "30"));
 
-                    dateDepart = rs.getString(7).replaceAll("\\s.*", "");
-                    dateArrive = rs.getString(8).replaceAll("\\s.*", "");
-                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, "3h", "Wizz", "22"));
+                    String dateDepart = rs.getString(7).replaceAll("\\s.*", "");
+                    String dateArrive = rs.getString(8).replaceAll("\\s.*", "");
+                    String company = rs.getString(20);
+                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, "", company, "22"));
                 }
                 res = result;
             } catch (Exception e) {

@@ -93,43 +93,7 @@ public class Fragment_home extends Fragment {
 
     public void createButtons(View view){
         textDepart = (Button) view.findViewById(R.id.textDepart);
-        textReturn = (Button) view.findViewById(R.id.textDepart2);
-        titleReturn = (TextView) view.findViewById(R.id.textFrom4);
-        buttonRoundTrip = (Button) view.findViewById(R.id.buttonRoundTrip);
-        buttonOneway = (Button) view.findViewById(R.id.buttonRoundTrip2);
         buttonSearchFlights = (Button)view.findViewById(R.id.buttonSearchFlight);
-
-        buttonRoundTrip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonRoundTrip.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.rounded_corner_blue, null));
-                buttonRoundTrip.setTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
-                buttonOneway.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.rounded_corner_white, null));
-                buttonOneway.setTextColor(ResourcesCompat.getColor(getResources(), R.color.black, null));
-                textReturn.setEnabled(true);
-                titleReturn.setEnabled(true);
-                textReturn.setVisibility(View.VISIBLE);
-                titleReturn.setVisibility(View.VISIBLE);
-
-                System.out.println("Clicked");
-            }
-        });
-
-        buttonOneway.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonOneway.setBackground(ResourcesCompat.getDrawable(getResources(),R.drawable.rounded_corner_blue, null));
-                buttonOneway.setTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
-                buttonRoundTrip.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.rounded_corner_white, null));
-                buttonRoundTrip.setTextColor(ResourcesCompat.getColor(getResources(), R.color.black, null));
-                textReturn.setEnabled(false);
-                titleReturn.setEnabled(false);
-                textReturn.setVisibility(View.INVISIBLE);
-                titleReturn.setVisibility(View.INVISIBLE);
-
-            }
-        });
-
         textDepart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,31 +110,17 @@ public class Fragment_home extends Fragment {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // on below line we are setting date to our edit text.
-                                textDepart.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                String res = Integer.toString(year);
+                                if(monthOfYear < 10)
+                                    res = res + "-0" + (monthOfYear + 1);
+                                else
+                                    res = res + "-" + (monthOfYear + 1);
 
-                            }
-                        },
-                        year, month, day);
-                datePickerDialog.show();
-            }
-        });
-        textReturn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        // on below line we are passing context.
-                        getActivity(),
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                // on below line we are setting date to our edit text.
-                                textReturn.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                if(dayOfMonth < 10)
+                                    res = res + "-0" + (dayOfMonth);
+                                else
+                                    res = res + "-" + (dayOfMonth);
+                                textDepart.setText(res);
 
                             }
                         },
@@ -182,49 +132,17 @@ public class Fragment_home extends Fragment {
         buttonSearchFlights.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_shop()).commit();
+                String depart = spinnerFrom.getSelectedItem().toString();
+                // ORAS ARRIVE
+                String arrive = spinnerTo.getSelectedItem().toString();
+                // obvious
+                String dateDepart = textDepart.getText().toString();
+                String flyclass = spinnerClass.getSelectedItem().toString();
+                System.out.println(depart + arrive + dateDepart + flyclass);
+
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_shop(depart, arrive, dateDepart, flyclass)).commit();
 
             }
         });
-    }
-
-    private class ConnectMySql extends AsyncTask<String, Void, String> {
-        String res = "";
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            Toast.makeText(getActivity(), "Please wait...", Toast.LENGTH_SHORT)
-                    .show();
-
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection(url, user, pass);
-                System.out.println("Databaseection success");
-
-                String result = "";
-                Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * from users where FullName = \"Joe Biden\"");
-                ResultSetMetaData rsmd = rs.getMetaData();
-
-                while (rs.next()) {
-                    result += rs.getString(2).toString() + "\n";
-                }
-                res = result;
-            } catch (Exception e) {
-                e.printStackTrace();
-                res = e.toString();
-            }
-            return res;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            buttonRoundTrip.setText(result);
-        }
     }
 }

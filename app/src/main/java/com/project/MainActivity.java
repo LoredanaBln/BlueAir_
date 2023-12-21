@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         }
         else if(item.getItemId() == R.id.nav_cart){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_cart()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_cart()).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
 
         }

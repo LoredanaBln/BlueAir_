@@ -12,7 +12,13 @@ public class Ticket {
     String ticket_company;
     String ticket_price;
 
+    //===== NEEDED FOR SQL! ====//
+    private int flightID;
 
+    public int getFlightID() {
+        return flightID;
+    }
+    //===== NEEDED FOR SQL! ====//
     public Ticket(String ticket_depart, String ticket_arrival, String ticket_date_depart, String ticket_date_arrival, String ticket_duration, String ticket_company, String ticket_price) {
         this.ticket_depart = ticket_depart;
         this.ticket_arrival = ticket_arrival;
@@ -22,6 +28,17 @@ public class Ticket {
         this.ticket_company = ticket_company;
         this.ticket_price = ticket_price;
     }
+    public Ticket(String ticket_depart, String ticket_arrival, String ticket_date_depart, String ticket_date_arrival, String ticket_duration, String ticket_company, String ticket_price, int idFlight) {
+        this.ticket_depart = ticket_depart;
+        this.ticket_arrival = ticket_arrival;
+        this.ticket_date_depart = ticket_date_depart;
+        this.ticket_date_arrival = ticket_date_arrival;
+        this.ticket_duration = ticket_duration;
+        this.ticket_company = ticket_company;
+        this.ticket_price = ticket_price;
+        this.flightID = idFlight;
+    }
+
     public String getTicket_depart() {
         return ticket_depart;
     }
