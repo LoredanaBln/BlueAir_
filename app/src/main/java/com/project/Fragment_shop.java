@@ -84,7 +84,7 @@ public class Fragment_shop extends Fragment implements RecyclerViewInterface {
         intent.putExtra("ARRIVAL", listOfTickets.get(position).getTicket_arrival());
         intent.putExtra("DATE_DEPART", listOfTickets.get(position).getTicket_date_depart());
         intent.putExtra("DATE_ARRIVAL", listOfTickets.get(position).getTicket_date_arrival());
-        intent.putExtra("CLASS", listOfTickets.get(position).getClass());
+        intent.putExtra("CLASS", listOfTickets.get(position).getTicket_class());
         intent.putExtra("COMPANY", listOfTickets.get(position).getTicket_company());
         intent.putExtra("PRICE", listOfTickets.get(position).getTicket_price());
         intent.putExtra("FLIGHT_ID", Integer.toString(listOfTickets.get(position).getFlightID()));

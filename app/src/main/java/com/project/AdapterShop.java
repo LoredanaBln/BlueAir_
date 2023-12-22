@@ -39,6 +39,7 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.ViewHolderShop
         holder.ticket_date_depart.setText(listOfTickets.get(position).getTicket_date_depart().replaceAll("\\s.*", ""));
         holder.company.setText(listOfTickets.get(position).getTicket_company());
         holder.price.setText(listOfTickets.get(position).getTicket_price());
+
     }
 
     @Override

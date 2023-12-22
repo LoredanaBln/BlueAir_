@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -36,6 +37,8 @@ public class fragment_cart extends Fragment implements RecyclerViewInterface {
     RecyclerView recyclerView;
     List<Ticket> listOfTickets;
     Adapter adapter;
+    private int total_price = 0;
+    TextView priceBox;
     public fragment_cart() {
         listOfTickets = new ArrayList<>();
     }
@@ -61,11 +64,13 @@ public class fragment_cart extends Fragment implements RecyclerViewInterface {
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.recycler_cart);
+        priceBox = view.findViewById(R.id.textTotalMoney);
     }
     @Override
     public void onResume() {
         super.onResume();
         listOfTickets = new ArrayList<>();
+        total_price = 0;
         fragment_cart.ConnectMySql connectMySql = new fragment_cart.ConnectMySql();
         connectMySql.execute("");
     }
@@ -75,6 +80,7 @@ public class fragment_cart extends Fragment implements RecyclerViewInterface {
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
         AdapterShop adapterShop = new AdapterShop(getActivity(), listOfTickets, this);
         recyclerView.setAdapter(adapterShop);
+        priceBox.setText("" + total_price);
 
     }
     @Override
@@ -85,10 +91,11 @@ public class fragment_cart extends Fragment implements RecyclerViewInterface {
         intent.putExtra("ARRIVAL", listOfTickets.get(position).getTicket_arrival());
         intent.putExtra("DATE_DEPART", listOfTickets.get(position).getTicket_date_depart());
         intent.putExtra("DATE_ARRIVAL", listOfTickets.get(position).getTicket_date_arrival());
-        intent.putExtra("CLASS", listOfTickets.get(position).getClass());
+        intent.putExtra("CLASS", listOfTickets.get(position).getTicket_class());
         intent.putExtra("COMPANY", listOfTickets.get(position).getTicket_company());
         intent.putExtra("PRICE", listOfTickets.get(position).getTicket_price());
         intent.putExtra("FLIGHT_ID", Integer.toString(listOfTickets.get(position).getFlightID()));
+        intent.putExtra("PERSON", listOfTickets.get(position).getTicket_person());
         intent.putExtra("USAGE", false);
         startActivity(intent);
     }
@@ -123,8 +130,10 @@ public class fragment_cart extends Fragment implements RecyclerViewInterface {
                     String dateArrive = rs.getString(8);
                     String company = rs.getString(20);
                     String price = rs.getString(21);
+                    total_price += Integer.parseInt(price);
+
                     String flyingClass;
-                    if(price.equals(rs.getString(18)))
+                    if(price.equals(rs.getInt(18)))
                         flyingClass = "Economy";
                     else if(price.equals(rs.getString(17)))
                         flyingClass = "Business";

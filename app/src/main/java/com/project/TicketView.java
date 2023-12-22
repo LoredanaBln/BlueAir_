@@ -106,7 +106,7 @@ public class TicketView extends AppCompatActivity {
                     execProc = con.prepareCall("CALL InsertIntoCart(?,?,?)");
                     execProc.setString(1, Integer.toString(Activity_login.userID));
                     execProc.setString(2, flightID);
-                    execProc.setString(2, getIntent().getStringExtra("PRICE"));
+                    execProc.setString(3, getIntent().getStringExtra("PRICE"));
                 }
                 else{
                     execProc = con.prepareCall("CALL RemoveFromCart(?,?)");
