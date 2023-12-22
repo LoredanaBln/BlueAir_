@@ -40,8 +40,8 @@ public class Fragment_Modify_database extends Fragment {
         listOfTickets = new ArrayList<>();
     }
 
-    public static Fragment_cars newInstance(String param1, String param2) {
-        Fragment_cars fragment = new Fragment_cars();
+    public static Fragment_Modify_database newInstance(String param1, String param2) {
+        Fragment_Modify_database fragment = new Fragment_Modify_database();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
