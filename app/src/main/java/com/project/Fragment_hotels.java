@@ -3,6 +3,7 @@ package com.project;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +22,9 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,11 +40,16 @@ public class Fragment_hotels extends Fragment {
     private static final String user = DBConnectionCredentials.username;
     private static final String pass = DBConnectionCredentials.password;
 
-    RecyclerView recyclerView;
     List<Ticket> listOfTickets;
+    Map<String, List<String>> citiesOfCountry;
+    Spinner spinnerCountry, spinnerCity;
+    Button searchHotels;
     Adapter adapter;
     public Fragment_hotels() {
+
         listOfTickets = new ArrayList<>();
+        citiesOfCountry = new HashMap<String, List<String>>();
+
     }
 
 
@@ -59,13 +71,46 @@ public class Fragment_hotels extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_hotels, container, false);
     }
-    public void displayTickets(){
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+        createSpinners(view);
+        createButtons(view);
+        Fragment_hotels.ConnectMySql connectMySql = new Fragment_hotels.ConnectMySql();
+        connectMySql.execute("CREATE_SPINNER");
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
+    }
 
-        adapter = new Adapter(getActivity(), listOfTickets);
-        recyclerView.setAdapter(adapter);
+    public void createButtons(View view){
+
+    }
+    public void createSpinners(View view){
+        // INITIALISE SPINNERS
+        spinnerCountry = (Spinner) view.findViewById(R.id.spinnerHotelCountry);
+        spinnerCity = (Spinner) view.findViewById(R.id.spinnerHotelCity);
+        // DEFINE ADAPTERS
+        ArrayAdapter countryAdapter;
+        countryAdapter = ArrayAdapter.createFromResource(getActivity(),R.array.coutries, android.R.layout.simple_spinner_item);
+        countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String country = spinnerCountry.getSelectedItem().toString();
+                if(citiesOfCountry.size() != 0) {
+                    ArrayAdapter cityAdapter;
+                    cityAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, citiesOfCountry.get(country));
+                    countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerCity.setAdapter(cityAdapter);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+        //CONNECT ADAPTERS
+        spinnerCountry.setAdapter(countryAdapter);
     }
     private class ConnectMySql extends AsyncTask<String, Void, String> {
         String res = "";
@@ -83,22 +128,22 @@ public class Fragment_hotels extends Fragment {
                 System.out.println("Databaseection success");
 
                 String result = "";
-                Statement st = con.createStatement();
-                // SELECTS ALL THE ITEMS IN THE USERS CART
-                ResultSet rs = st.executeQuery("SELECT flights.* FROM flights INNER JOIN cart ON flights.flightID = cart.idFlight WHERE cart.iduser = " + Activity_login.userID);
-                ResultSetMetaData rsmd = rs.getMetaData();
+                if(params[0] == "CREATE_SPINNER") {
+                    Statement st = con.createStatement();
+                    // SELECTS ALL THE COUNTRY AND CITY PAIR
+                    ResultSet rs = st.executeQuery("SELECT distinct locations.Country, locations.city FROM project.locations order by locations.city");
+                    ResultSetMetaData rsmd = rs.getMetaData();
 
-                // FOR EACH ITEM SEARCH FOR THE FLIGHT AND ADD IT IN THE LIST
-                while (rs.next()) {
-                    String depart = rs.getString(3);
-                    String arrive = rs.getString(5);
-                    String dateDepart = rs.getString(7);
-                    String dateArrive = rs.getString(8);
-                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateDepart, "3h", "Wizz", "30"));
+                    // FOR EACH COUNTRY ADD CITY TO LIST
+                    while (rs.next()) {
+                        String country = rs.getString(1);
+                        String city = rs.getString(2);
 
-                    dateDepart = rs.getString(7).replaceAll("\\s.*", "");
-                    dateArrive = rs.getString(8).replaceAll("\\s.*", "");
-                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, "3h", "Wizz", "22"));
+                        if (!citiesOfCountry.containsKey(country)) {
+                            citiesOfCountry.put(country, new ArrayList<String>());
+                        }
+                        citiesOfCountry.get(country).add(city);
+                    }
                 }
                 res = result;
             } catch (Exception e) {
@@ -111,7 +156,6 @@ public class Fragment_hotels extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
-            displayTickets();
 
         }
     }
