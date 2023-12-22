@@ -61,8 +61,9 @@ public class Fragment_hotels extends Fragment {
     }
     public void displayTickets(){
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
+        //recyclerView.setHasFixedSize(true);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+        recyclerView.setLayoutManager(layoutManager);
 
         adapter = new Adapter(getActivity(), listOfTickets);
         recyclerView.setAdapter(adapter);
