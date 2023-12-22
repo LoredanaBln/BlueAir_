@@ -61,9 +61,13 @@ public class fragment_cart extends Fragment implements RecyclerViewInterface {
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.recycler_cart);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        listOfTickets = new ArrayList<>();
         fragment_cart.ConnectMySql connectMySql = new fragment_cart.ConnectMySql();
         connectMySql.execute("");
-
     }
     public void displayTickets(){
 
