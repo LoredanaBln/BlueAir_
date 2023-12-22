@@ -111,7 +111,7 @@ public class Fragment_shop extends Fragment implements RecyclerViewInterface {
                 String result = "";
                 Statement st = con.createStatement();
                 //COMMENT SELECTS ALL THE FLIGHTS WITH PARAMETERS FROM CONSTRUCTOR
-                String query = String.format("SELECT flights.*, airlines.AirlineName FROM flights JOIN airlines ON flights.AirlineID = airlines.AirlineID WHERE flights.DepartureLocationCountry = \"%s\" and flights.ArrivalLocationCountry = \"%s\" and flights.DepartureTime like \"%%%s%%\" and %s > 0", stringDepartLocation, stringArriveLocation, stringDateDepart, stringFlyingClassTicket);
+                String query = String.format("SELECT flights.*, airlines.AirlineName FROM flights JOIN airlines ON flights.AirlineID = airlines.AirlineID WHERE flights.DepartureLocationCountry = \"%s\" and flights.ArrivalLocationCountry = \"%s\" and flights.DepartureTime like \"%%%s%%\" and %s >0", stringDepartLocation, stringArriveLocation, stringDateDepart, stringFlyingClassTicket);
                 Log.i("QUERY", query);
                 ResultSet rs = st.executeQuery(query);
                 ResultSetMetaData rsmd = rs.getMetaData();

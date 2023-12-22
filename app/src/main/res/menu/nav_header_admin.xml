@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="176dp"
+    android:gravity="top"
+    android:paddingTop="48dp"
+    android:paddingStart="16dp"
+    tools:context=".MainActivity"
+    android:id="@+id/nav_header"
+    android:background="@drawable/menu_background">
+
+
+    <TextView
+        android:id="@+id/account_name"
+        style="@style/simpleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Account Name"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="person@example.com"
+        android:id="@+id/account_email"
+        style="@style/simpleText"
+        android:textSize="14sp"
+        />
+
+</LinearLayout>

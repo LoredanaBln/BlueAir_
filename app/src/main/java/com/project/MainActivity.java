@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public void createDropMenu(Bundle savedInstanceState){
+    private void createDropMenu(Bundle savedInstanceState){
         Toolbar toolbar = findViewById(R.id.toolbar); //Ignore red line errors
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
