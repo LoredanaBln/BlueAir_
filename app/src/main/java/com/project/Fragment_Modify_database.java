@@ -43,7 +43,7 @@ public class Fragment_Modify_database extends Fragment {
         super.onCreate(savedInstanceState);
     }
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        recyclerView = view.findViewById(R.id.recycler_main);
+        recyclerView = view.findViewById(R.id.recycler_admin);
         Fragment_Modify_database.ConnectMySql connectMySql = new Fragment_Modify_database.ConnectMySql();
         connectMySql.execute("");
 
