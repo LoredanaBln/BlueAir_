@@ -77,13 +77,8 @@ public class Fragment_hotels extends Fragment {
         Fragment_hotels.ConnectMySql connectMySql = new Fragment_hotels.ConnectMySql();
         connectMySql.execute("CREATE_SPINNER");
 
-<<<<<<< HEAD
     }
-=======
-        //recyclerView.setHasFixedSize(true);
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
-        recyclerView.setLayoutManager(layoutManager);
->>>>>>> 9b0047d954bce315b718bba29a30f20e28f0422d
+
 
     public void createButtons(View view){
 
