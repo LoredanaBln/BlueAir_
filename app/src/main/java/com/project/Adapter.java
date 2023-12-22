@@ -31,7 +31,6 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
         holder.ticket_arrival.setText(list.get(position).getTicket_arrival());
         holder.ticket_date_arrival.setText(list.get(position).getTicket_date_arrival());
         holder.ticket_date_depart.setText(list.get(position).getTicket_date_depart());
-        holder.ticket_duration.setText(list.get(position).getTicket_duration());
 
     }
 

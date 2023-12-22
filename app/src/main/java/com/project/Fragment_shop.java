@@ -79,16 +79,17 @@ public class Fragment_shop extends Fragment implements RecyclerViewInterface {
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(getActivity(), TicketView.class);
+        //TLDR ADD ITEMS NEEDED FOR DISPLAY
         intent.putExtra("DEPART", listOfTickets.get(position).getTicket_depart());
         intent.putExtra("ARRIVAL", listOfTickets.get(position).getTicket_arrival());
-        //intent.putExtra("CLASS", listOfTickets.get(position).getClass());
         intent.putExtra("DATE_DEPART", listOfTickets.get(position).getTicket_date_depart());
         intent.putExtra("DATE_ARRIVAL", listOfTickets.get(position).getTicket_date_arrival());
+        intent.putExtra("CLASS", listOfTickets.get(position).getClass());
         intent.putExtra("COMPANY", listOfTickets.get(position).getTicket_company());
         intent.putExtra("PRICE", listOfTickets.get(position).getTicket_price());
         intent.putExtra("FLIGHT_ID", Integer.toString(listOfTickets.get(position).getFlightID()));
-        Log.i("query", Integer.toString(listOfTickets.get(position).getFlightID()));
-
+        intent.putExtra("PERSON", listOfTickets.get(position).getTicket_person());
+        intent.putExtra("USAGE", true);
 
         startActivity(intent);
     }
@@ -124,8 +125,8 @@ public class Fragment_shop extends Fragment implements RecyclerViewInterface {
                     // ORAS ARRIVE
                     String arrive = rs.getString(5);
                     // obvious
-                    String dateDepart = rs.getString(7).replaceAll("\\s.*", "");
-                    String dateArrive = rs.getString(8).replaceAll("\\s.*", "");
+                    String dateDepart = rs.getString(7);
+                    String dateArrive = rs.getString(8);
                     // TICKET PRICES
                     String ticketPrice;
                     if(stringFlyingClass.equals("Economy"))
@@ -136,7 +137,7 @@ public class Fragment_shop extends Fragment implements RecyclerViewInterface {
                         ticketPrice = rs.getString(16);
                     String company = rs.getString(20);
 
-                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, "", company, ticketPrice, flightID));
+                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, stringFlyingClass, company, ticketPrice, flightID, Activity_login.accountName));
                 }
                 res = result;
             } catch (Exception e) {

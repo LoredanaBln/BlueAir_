@@ -8,9 +8,10 @@ public class Ticket {
     String ticket_arrival;
     String ticket_date_depart;
     String ticket_date_arrival;
-    String ticket_duration;
     String ticket_company;
     String ticket_price;
+    String ticket_person;
+    String ticket_class;
 
     //===== NEEDED FOR SQL! ====//
     private int flightID;
@@ -24,19 +25,19 @@ public class Ticket {
         this.ticket_arrival = ticket_arrival;
         this.ticket_date_depart = ticket_date_depart;
         this.ticket_date_arrival = ticket_date_arrival;
-        this.ticket_duration = ticket_duration;
         this.ticket_company = ticket_company;
         this.ticket_price = ticket_price;
     }
-    public Ticket(String ticket_depart, String ticket_arrival, String ticket_date_depart, String ticket_date_arrival, String ticket_duration, String ticket_company, String ticket_price, int idFlight) {
+    public Ticket(String ticket_depart, String ticket_arrival, String ticket_date_depart, String ticket_date_arrival, String ticket_class, String ticket_company, String ticket_price, int idFlight, String ticket_person) {
         this.ticket_depart = ticket_depart;
         this.ticket_arrival = ticket_arrival;
         this.ticket_date_depart = ticket_date_depart;
         this.ticket_date_arrival = ticket_date_arrival;
-        this.ticket_duration = ticket_duration;
+        this.ticket_class = ticket_class;
         this.ticket_company = ticket_company;
         this.ticket_price = ticket_price;
         this.flightID = idFlight;
+        this.ticket_person = ticket_person;
     }
 
     public String getTicket_depart() {
@@ -71,14 +72,6 @@ public class Ticket {
         this.ticket_date_arrival = ticket_date_arrival;
     }
 
-    public String getTicket_duration() {
-        return ticket_duration;
-    }
-
-    public void setTicket_duration(String ticket_duration) {
-        this.ticket_duration = ticket_duration;
-    }
-
     public String getTicket_company() {
         return ticket_company;
     }
@@ -93,5 +86,21 @@ public class Ticket {
 
     public void setTicket_price(String ticket_price) {
         this.ticket_price = ticket_price;
+    }
+
+    public String getTicket_person() {
+        return ticket_person;
+    }
+
+    public String getTicket_class() {
+        return ticket_class;
+    }
+
+    public void setTicket_person(String ticket_person) {
+        this.ticket_person = ticket_person;
+    }
+
+    public void setTicket_class(String ticket_class) {
+        this.ticket_class = ticket_class;
     }
 }

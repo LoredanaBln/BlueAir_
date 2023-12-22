@@ -35,8 +35,8 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.ViewHolderShop
     public void onBindViewHolder(@NonNull AdapterShop.ViewHolderShop holder, int position) {
         holder.ticket_depart.setText(listOfTickets.get(position).getTicket_depart());
         holder.ticket_arrival.setText(listOfTickets.get(position).getTicket_arrival());
-        holder.ticket_date_arrival.setText(listOfTickets.get(position).getTicket_date_arrival());
-        holder.ticket_date_depart.setText(listOfTickets.get(position).getTicket_date_depart());
+        holder.ticket_date_arrival.setText(listOfTickets.get(position).getTicket_date_arrival().replaceAll("\\s.*", ""));
+        holder.ticket_date_depart.setText(listOfTickets.get(position).getTicket_date_depart().replaceAll("\\s.*", ""));
         holder.company.setText(listOfTickets.get(position).getTicket_company());
         holder.price.setText(listOfTickets.get(position).getTicket_price());
     }

@@ -25,7 +25,7 @@
         android:id="@+id/ticketClass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="36dp"
         android:text="Economy"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,12 +46,13 @@
 
     <TextView
         android:id="@+id/textView22"
+        style="@style/simpleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="36dp"
-        android:text="Class"
-        style="@style/simpleText"
 
+        android:text="Class"
         android:textColor="@color/light_blue"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -63,18 +64,17 @@
         style="@style/simpleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="48dp"
         android:text="Company"
         android:textColor="@color/light_blue"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.585"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toBottomOf="@+id/ticketArrival" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/ticketPerson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/titleText"
@@ -127,8 +127,6 @@
         android:textColor="@color/light_blue"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.643"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toBottomOf="@+id/ticketCompany" />
 
@@ -143,7 +141,6 @@
         android:textColor="@color/light_blue"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toBottomOf="@+id/ticketDepartDate" />
 
@@ -175,10 +172,10 @@
         android:id="@+id/ticketCompany"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
+        android:layout_marginStart="10dp"
         android:text="Wizz"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/imageView13"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toBottomOf="@+id/textView20">
 
     </TextView>
@@ -200,7 +197,6 @@
         android:layout_marginStart="10dp"
         android:text="12.02.2024"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
@@ -211,7 +207,6 @@
         android:layout_marginStart="10dp"
         android:text="13.02.2024"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 

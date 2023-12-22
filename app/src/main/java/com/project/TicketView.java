@@ -26,21 +26,27 @@ public class TicketView extends AppCompatActivity {
     private static final String user = DBConnectionCredentials.username;
     private static final String pass = DBConnectionCredentials.password;
     private String flightID;
+    //TLDR SAME USAGE FOR SHOP AND CART
+    //TLDR 1 = FROM SHOP -> BUTTON ADD TO CART
+    //TLDR 0 = FROM CART -> BUTTON REMOVE FROM CART
+    private boolean _USAGE_TYPE;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_expanded_ticket);
         addToCart = findViewById(R.id.buttonAddToCart);
 
-        //String name = getIntent().getStringExtra("NAME");
+        //TLDR GET DATA FOR TICKET
         String depart = getIntent().getStringExtra("DEPART");
         String arrival = getIntent().getStringExtra("ARRIVAL");
         String datDepart = getIntent().getStringExtra("DATE_DEPART");
         String dateArrival = getIntent().getStringExtra("DATE_ARRIVAL");
         String company = getIntent().getStringExtra("COMPANY");
+        String flyCLass = getIntent().getStringExtra("CLASS");
+        String person = getIntent().getStringExtra("PERSON");
         String price = getIntent().getStringExtra("PRICE");
         flightID = getIntent().getStringExtra("FLIGHT_ID");
-        //String class_ = getIntent().getStringExtra("CLASS");
+        _USAGE_TYPE = getIntent().getBooleanExtra("USAGE", true);
 
         TextView ticketDepart = findViewById(R.id.ticketDeparture);
         TextView ticketArrival = findViewById(R.id.ticketArrival);
@@ -48,7 +54,8 @@ public class TicketView extends AppCompatActivity {
         TextView ticketArrivalDate = findViewById(R.id.ticketArrivalDate);
         TextView ticketCompany = findViewById(R.id.ticketCompany);
         TextView ticketPrice = findViewById(R.id.ticketPrice);
-        //TextView ticketClass = findViewById(R.id.ticketClass);
+        TextView ticketClass = findViewById(R.id.ticketClass);
+        TextView ticketPassenger = findViewById(R.id.ticketPerson);
 
         ticketDepart.setText(depart);
         ticketArrival.setText(arrival);
@@ -56,6 +63,8 @@ public class TicketView extends AppCompatActivity {
         ticketArrivalDate.setText(dateArrival);
         ticketCompany.setText(company);
         ticketPrice.setText(price);
+        ticketClass.setText(flyCLass);
+        ticketPassenger.setText(person);
 
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,11 +72,15 @@ public class TicketView extends AppCompatActivity {
                 addToCart.setVisibility(View.GONE);
                 TicketView.ConnectMySql connectMySql = new TicketView.ConnectMySql();
                 connectMySql.execute("");
-                Toast.makeText(v.getContext(), "Added to cart!", Toast.LENGTH_SHORT);
+                Toast.makeText(v.getContext(), "Added to cart!", Toast.LENGTH_LONG);
 
             }
         });
 
+        if(_USAGE_TYPE == true){
+            addToCart.setText("ADD TO CART");
+        }
+        else addToCart.setText("REMOVE FROM CART");
 
     }
 
@@ -87,9 +100,19 @@ public class TicketView extends AppCompatActivity {
                 System.out.println("Connection success");
 
                 String result = "";
-                CallableStatement execProc = con.prepareCall("CALL InsertIntoCart(?,?)");
-                execProc.setString(1, Integer.toString(Activity_login.userID));
-                execProc.setString(2, flightID);
+                CallableStatement execProc;
+
+                if(_USAGE_TYPE == true){
+                    execProc = con.prepareCall("CALL InsertIntoCart(?,?,?)");
+                    execProc.setString(1, Integer.toString(Activity_login.userID));
+                    execProc.setString(2, flightID);
+                    execProc.setString(2, getIntent().getStringExtra("PRICE"));
+                }
+                else{
+                    execProc = con.prepareCall("CALL RemoveFromCart(?,?)");
+                    execProc.setString(1, Integer.toString(Activity_login.userID));
+                    execProc.setString(2, flightID);
+                }
                 execProc.execute();
 
                 res = result;
