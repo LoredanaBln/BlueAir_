@@ -16,13 +16,13 @@
         android:layout_marginBottom="21dp"
         android:background="@color/blue2"
         android:backgroundTint="@color/blue2"
-        app:layout_constraintBottom_toTopOf="@+id/recycler_main"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_admin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_main"
+        android:id="@+id/recycler_admin"
         android:layout_width="392dp"
         android:layout_height="640dp"
         android:layout_margin="8dp"
