@@ -19,6 +19,18 @@
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
         <activity
+            android:name=".Activity_Admin"
+            android:exported="true" />
+        <activity
+            android:name=".Fragment_admin_home"
+            android:exported="true" />
+        <activity
+            android:name=".Fragment_Modify_database"
+            android:exported="true" />
+        <activity
+            android:name=".Main_screen_Activity"
+            android:exported="true" />
+        <activity
             android:name=".TicketView"
             android:exported="true" />
         <activity
@@ -35,8 +47,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".MainActivity"
             android:exported="true">

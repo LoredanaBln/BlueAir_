@@ -2,6 +2,7 @@ package com.project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -37,7 +38,6 @@ public class Activity_login extends AppCompatActivity {
         inputEmail2 = findViewById(R.id.inputEmail2);
         inputPassword2 = findViewById(R.id.inputPassword2);
         loginButton = findViewById(R.id.buttonLogin);
-        test = findViewById(R.id.test);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,13 +52,6 @@ public class Activity_login extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(Activity_login.this, Activity_register.class));
 
-            }
-        });
-
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Activity_login.this, Fragment_bookings.class));
             }
         });
 
@@ -123,7 +116,7 @@ public class Activity_login extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if(result != ""){
-                System.out.println("Logged in with accout" + accountName);
+                System.out.println("Logged in with account" + accountName);
                 startActivity(new Intent(Activity_login.this, MainActivity.class));
                 finish();
             }
