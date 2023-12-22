@@ -40,7 +40,6 @@ public class Fragment_shop extends Fragment implements RecyclerViewInterface {
         this.stringDateDepart = stringDateDepart;
         this.stringFlyingClass = flyingClass;
         this.stringFlyingClassTicket = "AvailableSeats" + flyingClass + "Class";
-        Log.i("Constructor", stringFlyingClassTicket);
         listOfTickets = new ArrayList<>();
     }
     //COMMENT===== INITIALIZE VARIBALES FOR QUERY =====//
