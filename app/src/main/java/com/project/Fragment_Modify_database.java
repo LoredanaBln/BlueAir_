@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,25 +24,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-
+ *
  */
-public class Fragment_Modify_database extends Fragment {
+public class Fragment_Modify_database extends Fragment implements RecyclerViewInterface{
 
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
     private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/" + DBConnectionCredentials.databaseName + "?characterEncoding=latin1&autoReconnect=true&useSSL=false";
     private static final String user = DBConnectionCredentials.username;
     private static final String pass = DBConnectionCredentials.password;
+    private Button buttonRefresh;
 
     RecyclerView recyclerView;
     //COMMENT====== INITIALIZE VARIABLES FOR QUERY =====//
-    private String stringDepartLocation, stringArriveLocation, stringDateDepart, stringFlyingClass, stringFlyingClassTicket;
+    //private String stringDepartLocation, stringArriveLocation, stringDateDepart, stringFlyingClass, stringFlyingClassTicket;
     List<Ticket> listOfTickets;
-    public Fragment_Modify_database() {
-        listOfTickets = new ArrayList<>();
+    public Fragment_Modify_database() {listOfTickets = new ArrayList<>();}
+
+    public static Fragment_Modify_database newInstance(String param1, String param2) {
+        Fragment_Modify_database fragment = new Fragment_Modify_database();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.recycler_admin);
         Fragment_Modify_database.ConnectMySql connectMySql = new Fragment_Modify_database.ConnectMySql();
@@ -59,12 +72,29 @@ public class Fragment_Modify_database extends Fragment {
     public void displayTickets() {
 
         recyclerView.setHasFixedSize(true);
-        Adapter adapter = new Adapter(getActivity(), listOfTickets);
-        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
-
+        AdapterShop adapter = new AdapterShop(getActivity(), listOfTickets, this);
+        recyclerView.setAdapter(adapter);
 
     }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(getActivity(), TicketView.class);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
+        intent.putExtra("DEPART", listOfTickets.get(position).getTicket_depart());
+        intent.putExtra("ARRIVAL", listOfTickets.get(position).getTicket_arrival());
+        intent.putExtra("DATE_DEPART", listOfTickets.get(position).getTicket_date_depart());
+        intent.putExtra("DATE_ARRIVAL", listOfTickets.get(position).getTicket_date_arrival());
+        intent.putExtra("CLASS", listOfTickets.get(position).getTicket_class());
+        intent.putExtra("COMPANY", listOfTickets.get(position).getTicket_company());
+        intent.putExtra("PRICE", listOfTickets.get(position).getTicket_price());
+        intent.putExtra("FLIGHT_ID", Integer.toString(listOfTickets.get(position).getFlightID()));
+        intent.putExtra("PERSON", listOfTickets.get(position).getTicket_person());
+        intent.putExtra("USAGE", true);
+        startActivity(intent);
+    }
+
     private class ConnectMySql extends AsyncTask<String, Void, String> {
         String res = "";
 
@@ -78,38 +108,32 @@ public class Fragment_Modify_database extends Fragment {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con = DriverManager.getConnection(url, user, pass);
-                System.out.println("Connection success");
+                System.out.println("Databaseection success");
 
                 String result = "";
                 Statement st = con.createStatement();
-                //COMMENT SELECTS ALL THE FLIGHTS WITH PARAMETERS FROM CONSTRUCTOR
-                String query = String.format("SELECT flights.*, airlines.AirlineName FROM flights JOIN airlines ON flights.AirlineID = airlines.AirlineID WHERE flights.DepartureLocationCountry = \"%s\" and flights.ArrivalLocationCountry = \"%s\" and flights.DepartureTime like \"%%%s%%\" and %s >0", stringDepartLocation, stringArriveLocation, stringDateDepart, stringFlyingClassTicket);
-                Log.i("QUERY", query);
-                ResultSet rs = st.executeQuery(query);
+                // SELECTS ALL THE ITEMS IN THE USERS CART
+                ResultSet rs = st.executeQuery("SELECT flights.*, airlines.AirlineName FROM flights JOIN airlines ON flights.AirlineID = airlines.AirlineID");
                 ResultSetMetaData rsmd = rs.getMetaData();
 
-                //COMMENT FOR EACH ITEM SEARCH FOR THE FLIGHT AND ADD IT IN THE LIST
+                // FOR EACH ITEM SEARCH FOR THE FLIGHT AND ADD IT IN THE LIST
                 while (rs.next()) {
-                    int flightID = rs.getInt(1);
-                    Log.i("query", Integer.toString(flightID));
-                    // ORAS DEPART
                     String depart = rs.getString(3);
-                    // ORAS ARRIVE
                     String arrive = rs.getString(5);
-                    // obvious
+
                     String dateDepart = rs.getString(7);
                     String dateArrive = rs.getString(8);
-                    // TICKET PRICES
-                    String ticketPrice;
-                    if(stringFlyingClass.equals("Economy"))
-                        ticketPrice = rs.getString(18);
-                    else if(stringFlyingClass.equals("Business"))
-                        ticketPrice = rs.getString(17);
-                    else
-                        ticketPrice = rs.getString(16);
                     String company = rs.getString(20);
-
-                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, stringFlyingClass, company, ticketPrice, flightID, Activity_login.accountName));
+//                    String price = rs.getString(21);
+//
+//                    String flyingClass;
+//                    if(price.equals(rs.getInt(18)))
+//                        flyingClass = "Economy";
+//                    else if(price.equals(rs.getString(17)))
+//                        flyingClass = "Business";
+//                    else flyingClass = "First";
+                    int id = rs.getInt(1);
+                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, "some", company, "randomNum", id, "Activity_login.accountName"));
                 }
                 res = result;
             } catch (Exception e) {
@@ -119,11 +143,19 @@ public class Fragment_Modify_database extends Fragment {
             }
             return res;
         }
-
         @Override
         protected void onPostExecute(String result) {
             displayTickets();
-
         }
+    }
+    public void buttons(View view){
+        buttonRefresh = (Button) view.findViewById(R.id.buttonRefresh);
+
+        buttonRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayTickets();
+            }
+        });
     }
 }

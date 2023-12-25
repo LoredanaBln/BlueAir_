@@ -61,10 +61,10 @@
         app:layout_constraintBottom_toTopOf="@+id/hotelDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hotelName" />
+        app:layout_constraintTop_toBottomOf="@+id/carName" />
 
     <TextView
-        android:id="@+id/hotelName"
+        android:id="@+id/carName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -99,7 +99,7 @@
         app:layout_constraintTop_toBottomOf="@+id/hotelLocation" />
 
     <TextView
-        android:id="@+id/hotelRating"
+        android:id="@+id/carRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="23dp"
@@ -113,7 +113,7 @@
         app:layout_constraintBottom_toTopOf="@+id/hotelLocation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/hotelName"
+        app:layout_constraintStart_toEndOf="@+id/carName"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         app:layout_constraintVertical_bias="0.0" />
 
