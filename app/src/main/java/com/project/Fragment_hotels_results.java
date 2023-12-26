@@ -1,5 +1,6 @@
 package com.project;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -90,7 +92,9 @@ public class Fragment_hotels_results extends Fragment implements RecyclerViewInt
 
     @Override
     public void onItemClick(int position) {
-
+        Intent intent = new Intent(getActivity(), HotelView.class);
+        intent.putExtra("Hotel", listOfHotels.get(position));
+        startActivity(intent);
     }
     //COMMENT NEEDED FOR RECYCLER VIEW!!
 

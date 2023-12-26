@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    tools:context=".TicketView">
+    tools:context=".HotelView">
 
     <ImageView
         android:id="@+id/imageView13"
@@ -47,10 +47,10 @@
         app:layout_constraintBottom_toTopOf="@+id/hotelDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carName" />
+        app:layout_constraintTop_toBottomOf="@+id/hotelName" />
 
     <TextView
-        android:id="@+id/carName"
+        android:id="@+id/hotelName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -79,13 +79,14 @@
         android:textAlignment="viewStart"
         android:textColor="@color/white"
         android:textSize="16sp"
+        app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hotelLocation" />
 
     <TextView
-        android:id="@+id/carRating"
+        android:id="@+id/hotelRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="23dp"
@@ -99,7 +100,7 @@
         app:layout_constraintBottom_toTopOf="@+id/hotelLocation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/carName"
+        app:layout_constraintStart_toEndOf="@+id/hotelName"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -173,7 +174,7 @@
 
     <TextView
         android:id="@+id/hotelCheckIn"
-        android:layout_width="48dp"
+        android:layout_width="wrap_content"
         android:layout_height="23dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
@@ -189,7 +190,7 @@
 
     <TextView
         android:id="@+id/hotelCheckOut"
-        android:layout_width="48dp"
+        android:layout_width="wrap_content"
         android:layout_height="23dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="40dp"
@@ -210,6 +211,7 @@
         android:layout_marginTop="10dp"
         android:text="WiFi, parcare privata, transfer de la și/sau la aeroport, sală de fitness, mic dejun, 2 restaurante"
         android:textColor="@color/white"
+        app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
@@ -222,6 +224,7 @@
         android:layout_marginTop="60dp"
         android:text="Politicile de anulare şi de plată în avans variază în funcţie de tipul de cazare. 	 Vârsta minimă pentru check-in este de 18. Animalele de companie nu sunt acceptate."
         android:textColor="@color/white"
+        app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="parent"

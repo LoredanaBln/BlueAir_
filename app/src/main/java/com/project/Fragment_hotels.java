@@ -105,10 +105,10 @@ public class Fragment_hotels extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String country = spinnerCountry.getSelectedItem().toString();
-                if(citiesOfCountry.size() != 0) {
+                if(citiesOfCountry.get(country) != null && citiesOfCountry.get(country).size() != 0) {
                     ArrayAdapter cityAdapter;
                     cityAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, citiesOfCountry.get(country));
-                    countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinnerCity.setAdapter(cityAdapter);
                 }
             }
