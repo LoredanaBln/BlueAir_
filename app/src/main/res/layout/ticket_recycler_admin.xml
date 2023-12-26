@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_container"
+    android:id="@+id/admin_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -11,17 +11,18 @@
     app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ticket"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:id="@+id/ticket_admin"
+        android:layout_width="381dp"
+        android:layout_height="114dp"
         android:layout_margin="6dp">
 
 
         <TextView
             android:id="@+id/ticket_depart_admin"
             style="@style/titleText"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_width="121dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:text="Paris"
             android:textAlignment="center"
@@ -32,31 +33,18 @@
             app:autoSizeStepGranularity="0.1dp"
             app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
         </TextView>
 
         <TextView
-            android:id="@+id/ticket_company"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Wizz"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.931">
-
-        </TextView>
-
-        <TextView
             android:id="@+id/ticket_arrival_admin"
             style="@style/titleText"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_width="122dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="12dp"
             android:layout_weight="1"
             android:text="London"
             android:textAlignment="center"
@@ -67,45 +55,9 @@
             app:autoSizeStepGranularity="0.1dp"
             app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.138"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent">
-
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/ticket_price"
-            android:layout_width="41dp"
-            android:layout_height="31dp"
-            android:layout_marginEnd="4dp"
-            android:layout_weight="1"
-            android:text="500"
-            android:textAlignment="gravity"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ticket_date_arrive_admin"
-            app:layout_constraintVertical_bias="0.652">
-
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/ticket_arrival2"
-            android:layout_width="40dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="€"
-            android:textAlignment="textEnd"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/ticket_price"
-            app:layout_constraintHorizontal_bias="0.719"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.9">
 
 
         </TextView>
@@ -114,8 +66,10 @@
             android:id="@+id/imageView"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginTop="12dp"
             android:rotation="90"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.417"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_airplanemode_active_24" />
@@ -123,8 +77,10 @@
         <TextView
             android:id="@+id/ticket_date_depart_admin"
             style="@style/simpleText"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_width="116dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
             android:text="24/08/2019"
             app:autoSizeMaxTextSize="24sp"
             app:autoSizeMinTextSize="2sp"
@@ -141,7 +97,6 @@
             android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/ticket_company"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:layout_constraintVertical_bias="0.153">
 
@@ -150,15 +105,35 @@
         <TextView
             android:id="@+id/ticket_date_arrive_admin"
             style="@style/simpleText"
-            android:layout_width="130sp"
-            android:layout_height="wrap_content"
+            android:layout_width="112dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="72dp"
             android:text="24/08/2019"
+            android:textSize="20sp"
             app:autoSizeMaxTextSize="24sp"
             app:autoSizeMinTextSize="2sp"
             app:autoSizeStepGranularity="0.1dp"
             app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ticket_arrival_admin" />
+
+        <CheckBox
+            android:id="@+id/isSelected"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="44dp"
+            android:buttonTint="#F6F6F6"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/ticket_arrival_admin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

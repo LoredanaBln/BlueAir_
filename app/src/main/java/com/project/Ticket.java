@@ -12,6 +12,7 @@ public class Ticket {
     String ticket_price;
     String ticket_person;
     String ticket_class;
+    Boolean isSelected;
 
     //===== NEEDED FOR SQL! ====//
     private int flightID;
@@ -38,6 +39,27 @@ public class Ticket {
         this.ticket_price = ticket_price;
         this.flightID = idFlight;
         this.ticket_person = ticket_person;
+    }
+
+    public Ticket(String ticket_depart, String ticket_arrival, String ticket_date_depart, String ticket_date_arrival, String ticket_company, String ticket_price, String ticket_person, String ticket_class, Boolean isSelected, int flightID) {
+        this.ticket_depart = ticket_depart;
+        this.ticket_arrival = ticket_arrival;
+        this.ticket_date_depart = ticket_date_depart;
+        this.ticket_date_arrival = ticket_date_arrival;
+        this.ticket_company = ticket_company;
+        this.ticket_price = ticket_price;
+        this.ticket_person = ticket_person;
+        this.ticket_class = ticket_class;
+        this.isSelected = isSelected;
+        this.flightID = flightID;
+    }
+
+    public Boolean getSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(Boolean selected) {
+        isSelected = selected;
     }
 
     public String getTicket_depart() {

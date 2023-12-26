@@ -33,7 +33,8 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
     private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/" + DBConnectionCredentials.databaseName + "?characterEncoding=latin1&autoReconnect=true&useSSL=false";
     private static final String user = DBConnectionCredentials.username;
     private static final String pass = DBConnectionCredentials.password;
-    private Button buttonRefresh;
+    private Button buttonDelete, buttonAdd;
+    boolean isChecked;
 
     RecyclerView recyclerView;
     //COMMENT====== INITIALIZE VARIABLES FOR QUERY =====//
@@ -57,6 +58,8 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.recycler_admin);
+        buttonDelete = (Button) view.findViewById(R.id.buttonDelete);
+
         Fragment_Modify_database.ConnectMySql connectMySql = new Fragment_Modify_database.ConnectMySql();
         connectMySql.execute("");
 
@@ -73,7 +76,7 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
-        AdapterShop adapter = new AdapterShop(getActivity(), listOfTickets, this);
+        AdapterAdmin adapter = new AdapterAdmin(getActivity(), listOfTickets, this);
         recyclerView.setAdapter(adapter);
 
     }
@@ -87,8 +90,8 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
         intent.putExtra("DATE_DEPART", listOfTickets.get(position).getTicket_date_depart());
         intent.putExtra("DATE_ARRIVAL", listOfTickets.get(position).getTicket_date_arrival());
         intent.putExtra("CLASS", listOfTickets.get(position).getTicket_class());
-        intent.putExtra("COMPANY", listOfTickets.get(position).getTicket_company());
-        intent.putExtra("PRICE", listOfTickets.get(position).getTicket_price());
+        //intent.putExtra("COMPANY", listOfTickets.get(position).getTicket_company());
+        //intent.putExtra("PRICE", listOfTickets.get(position).getTicket_price());
         intent.putExtra("FLIGHT_ID", Integer.toString(listOfTickets.get(position).getFlightID()));
         intent.putExtra("PERSON", listOfTickets.get(position).getTicket_person());
         intent.putExtra("USAGE", true);
@@ -124,7 +127,10 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
                     String dateDepart = rs.getString(7);
                     String dateArrive = rs.getString(8);
                     String company = rs.getString(20);
-//                    String price = rs.getString(21);
+                    String priceF = rs.getString(16);
+                    String priceB = rs.getString(17);
+                    String priceE = rs.getString(18);
+
 //
 //                    String flyingClass;
 //                    if(price.equals(rs.getInt(18)))
@@ -133,7 +139,7 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
 //                        flyingClass = "Business";
 //                    else flyingClass = "First";
                     int id = rs.getInt(1);
-                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, "some", company, "randomNum", id, "Activity_login.accountName"));
+                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, "some", company, "randomNum", "", false, id));
                 }
                 res = result;
             } catch (Exception e) {
@@ -149,13 +155,9 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
         }
     }
     public void buttons(View view){
-        buttonRefresh = (Button) view.findViewById(R.id.buttonRefresh);
 
-        buttonRefresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                displayTickets();
-            }
-        });
+
+
+
     }
 }

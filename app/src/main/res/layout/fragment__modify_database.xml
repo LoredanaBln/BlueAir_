@@ -2,69 +2,66 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Fragment_Modify_database"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6DBAC6"
+    android:background="@color/blue2"
     android:paddingStart="10dp"
-    android:paddingEnd="10dp">
+    android:paddingEnd="10dp"
+    tools:context=".Fragment_Modify_database">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout2"
         android:layout_width="391dp"
         android:layout_height="47dp"
-        android:layout_marginBottom="21dp"
-        android:background="@color/blue2"
-        android:backgroundTint="@color/blue2"
+        android:background="@color/dark_grey"
+        android:backgroundTint="@color/dark_blue"
         app:layout_constraintBottom_toTopOf="@+id/recycler_admin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/buttonRefresh"
-            android:layout_width="52dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="316dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="2dp"
-            android:background="@drawable/baseline_refresh_24"
-            android:scrollbarTrackHorizontal="@drawable/baseline_refresh_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.75" />
-
-        <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonDelete"
             android:layout_width="50dp"
             android:layout_height="48dp"
-            android:layout_marginStart="263dp"
+            android:layout_marginStart="324dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/trash_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/buttonRefresh"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/buttonAdd"
+            android:layout_width="50dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="203dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/baseline_playlist_add_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonDelete"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_admin"
-        android:layout_width="375dp"
-        android:layout_height="623dp"
+        android:layout_width="385dp"
+        android:layout_height="650dp"
         android:layout_margin="8dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="31dp"
+        android:layout_marginBottom="10dp"
 
         android:backgroundTint="@color/blue2"
         android:paddingStart="8dp"
         android:paddingTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"></androidx.recyclerview.widget.RecyclerView>
 
