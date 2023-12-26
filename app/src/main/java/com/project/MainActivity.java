@@ -73,10 +73,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_aboutus()).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
         }
-        else if(item.getItemId() == R.id.nav_cars){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_cars()).commit();
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
         else if(item.getItemId() == R.id.nav_hotels){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_hotels()).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
