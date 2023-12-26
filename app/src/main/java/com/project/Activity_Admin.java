@@ -57,11 +57,10 @@ public class Activity_Admin extends AppCompatActivity implements NavigationView.
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_admin, new Fragment_admin_home()).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
         }
-        /*else if(item.getItemId() == R.id.nav_logout_admin){
+        else if(item.getItemId() == R.id.nav_logout_admin){
             startActivity(new Intent(Activity_Admin.this, Activity_login.class));
             finish();
-        }*/
-
+        }
         else if(item.getItemId() == R.id.nav_database){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_admin, new Fragment_Modify_database()).commit();
             drawerLayout.closeDrawer(GravityCompat.START);
