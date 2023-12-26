@@ -1,6 +1,8 @@
 package com.project;
 
-public class Hotel {
+import java.io.Serializable;
+
+public class Hotel implements Serializable {
     private String hotelName, hotelDescription, hotelRating, hotelContact, hotelEmail, hotelWebsite, hotelCheckIn, hotelCheckOut, hotelAmenities, hotelPolicies, hotelCity, hotelCountry;
     private int hotelID;
     public Hotel(int hotelID, String hotelName, String hotelDescription, String hotelRating, String hotelContact, String hotelEmail, String hotelWebsite, String hotelCheckIn, String hotelCheckOut, String hotelAmenities, String hotelPolicies, String hotelCity, String hotelCountry) {

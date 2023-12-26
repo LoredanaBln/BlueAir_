@@ -23,6 +23,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,10 +75,9 @@ public class Fragment_hotels extends Fragment {
         return inflater.inflate(R.layout.fragment_hotels, container, false);
     }
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
-        createSpinners(view);
-        createButtons(view);
         Fragment_hotels.ConnectMySql connectMySql = new Fragment_hotels.ConnectMySql();
         connectMySql.execute("CREATE_SPINNER");
+        createButtons(view);
 
     }
 
@@ -93,24 +94,33 @@ public class Fragment_hotels extends Fragment {
             }
         });
     }
-    public void createSpinners(View view){
+    public void createSpinners(){
+        View view = getView();
         // INITIALISE SPINNERS
         spinnerCountry = (Spinner) view.findViewById(R.id.spinnerHotelCountry);
         spinnerCity = (Spinner) view.findViewById(R.id.spinnerHotelCity);
         // DEFINE ADAPTERS
         ArrayAdapter countryAdapter;
-        countryAdapter = ArrayAdapter.createFromResource(getActivity(),R.array.coutries, android.R.layout.simple_spinner_item);
+        List<String> countries = new ArrayList<>();
+
+        for (Map.Entry<String, List<String>> entry : citiesOfCountry.entrySet()){
+            countries.add(entry.getKey());
+        }
+        Collections.sort(countries);
+        countryAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, countries);
+        //countryAdapter = ArrayAdapter.createFromResource(getActivity(),R.array.coutries, android.R.layout.simple_spinner_item);
         countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String country = spinnerCountry.getSelectedItem().toString();
-                if(citiesOfCountry.size() != 0) {
+                if(citiesOfCountry.get(country) != null && citiesOfCountry.get(country).size() != 0) {
                     ArrayAdapter cityAdapter;
                     cityAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, citiesOfCountry.get(country));
-                    countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinnerCity.setAdapter(cityAdapter);
                 }
+
             }
 
             @Override
@@ -142,7 +152,7 @@ public class Fragment_hotels extends Fragment {
                 if(params[0] == "CREATE_SPINNER") {
                     Statement st = con.createStatement();
                     // SELECTS ALL THE COUNTRY AND CITY PAIR
-                    ResultSet rs = st.executeQuery("SELECT distinct locations.Country, locations.city FROM project.locations order by locations.city");
+                    ResultSet rs = st.executeQuery("SELECT distinct locations.Country, locations.city FROM project.locations order by locations.City");
                     ResultSetMetaData rsmd = rs.getMetaData();
 
                     // FOR EACH COUNTRY ADD CITY TO LIST
@@ -167,7 +177,7 @@ public class Fragment_hotels extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
-
+            createSpinners();
         }
     }
 }
