@@ -1,5 +1,7 @@
 package com.project;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -35,6 +38,7 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
     private static final String pass = DBConnectionCredentials.password;
     private Button buttonDelete, buttonAdd;
     boolean isChecked;
+    AdapterAdmin adapter;
 
     RecyclerView recyclerView;
     //COMMENT====== INITIALIZE VARIABLES FOR QUERY =====//
@@ -59,9 +63,9 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.recycler_admin);
         buttonDelete = (Button) view.findViewById(R.id.buttonDelete);
-
+        initButtons();
         Fragment_Modify_database.ConnectMySql connectMySql = new Fragment_Modify_database.ConnectMySql();
-        connectMySql.execute("");
+        connectMySql.execute("INIT_DB");
 
     }
 
@@ -72,30 +76,49 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
         return inflater.inflate(R.layout.fragment__modify_database, container, false);
     }
 
+    public void initButtons(){
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setCancelable(true);
+                builder.setTitle("Delete");
+                builder.setMessage("Confirm deletion of selected flights.");
+                builder.setPositiveButton("Confirm",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Fragment_Modify_database.ConnectMySql connectMySql = new Fragment_Modify_database.ConnectMySql();
+                                connectMySql.execute("DELETE_ENTRY");
+
+                            }
+                        });
+                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+    }
     public void displayTickets() {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
-        AdapterAdmin adapter = new AdapterAdmin(getActivity(), listOfTickets, this);
+        adapter = new AdapterAdmin(getActivity(), listOfTickets, this);
         recyclerView.setAdapter(adapter);
 
     }
 
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(getActivity(), TicketView.class);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
-        intent.putExtra("DEPART", listOfTickets.get(position).getTicket_depart());
-        intent.putExtra("ARRIVAL", listOfTickets.get(position).getTicket_arrival());
-        intent.putExtra("DATE_DEPART", listOfTickets.get(position).getTicket_date_depart());
-        intent.putExtra("DATE_ARRIVAL", listOfTickets.get(position).getTicket_date_arrival());
-        intent.putExtra("CLASS", listOfTickets.get(position).getTicket_class());
-        //intent.putExtra("COMPANY", listOfTickets.get(position).getTicket_company());
-        //intent.putExtra("PRICE", listOfTickets.get(position).getTicket_price());
-        intent.putExtra("FLIGHT_ID", Integer.toString(listOfTickets.get(position).getFlightID()));
-        intent.putExtra("PERSON", listOfTickets.get(position).getTicket_person());
-        intent.putExtra("USAGE", true);
-        startActivity(intent);
+        listOfTickets.get(position).setSelected(!listOfTickets.get(position).getSelected());
+        Log.i("Select", "" + listOfTickets.get(position).getSelected());
+        adapter.notifyItemChanged(position);
+
     }
 
     private class ConnectMySql extends AsyncTask<String, Void, String> {
@@ -114,32 +137,42 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
                 System.out.println("Databaseection success");
 
                 String result = "";
-                Statement st = con.createStatement();
-                // SELECTS ALL THE ITEMS IN THE USERS CART
-                ResultSet rs = st.executeQuery("SELECT flights.*, airlines.AirlineName FROM flights JOIN airlines ON flights.AirlineID = airlines.AirlineID");
-                ResultSetMetaData rsmd = rs.getMetaData();
+                if(params[0] == "INIT_DB") {
+                    Statement st = con.createStatement();
+                    // SELECTS ALL THE ITEMS IN THE USERS CART
+                    ResultSet rs = st.executeQuery("SELECT flights.*, airlines.AirlineName FROM flights JOIN airlines ON flights.AirlineID = airlines.AirlineID order by flights.DepartureLocationCountry");
+                    ResultSetMetaData rsmd = rs.getMetaData();
 
-                // FOR EACH ITEM SEARCH FOR THE FLIGHT AND ADD IT IN THE LIST
-                while (rs.next()) {
-                    String depart = rs.getString(3);
-                    String arrive = rs.getString(5);
+                    // FOR EACH ITEM SEARCH FOR THE FLIGHT AND ADD IT IN THE LIST
+                    while (rs.next()) {
+                        String depart = rs.getString(3);
+                        String arrive = rs.getString(5);
 
-                    String dateDepart = rs.getString(7);
-                    String dateArrive = rs.getString(8);
-                    String company = rs.getString(20);
-                    String priceF = rs.getString(16);
-                    String priceB = rs.getString(17);
-                    String priceE = rs.getString(18);
+                        String dateDepart = rs.getString(7);
+                        String dateArrive = rs.getString(8);
+                        String company = rs.getString(20);
+                        String priceF = rs.getString(16);
+                        String priceB = rs.getString(17);
+                        String priceE = rs.getString(18);
+                        int id = rs.getInt(1);
+                        String flightNumber = rs.getString(2);
+                        Ticket ticket = new Ticket(depart, arrive, dateDepart, dateArrive, "universal", company, priceE, id, Activity_login.accountName);
+                        ticket.setFlightNumber(flightNumber);
 
-//
-//                    String flyingClass;
-//                    if(price.equals(rs.getInt(18)))
-//                        flyingClass = "Economy";
-//                    else if(price.equals(rs.getString(17)))
-//                        flyingClass = "Business";
-//                    else flyingClass = "First";
-                    int id = rs.getInt(1);
-                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, "some", company, "randomNum", "", false, id));
+                        listOfTickets.add(ticket);
+                    }
+                }
+                else if(params[0] == "DELETE_ENTRY"){
+                    for (Ticket t : listOfTickets){
+                        if(t.getSelected() == true){
+                            listOfTickets.remove(t);
+                            CallableStatement execProc;
+                            execProc = con.prepareCall("CALL DeleteFlight(?)");
+                            execProc.setInt(1,t.getFlightID());
+                            execProc.execute();
+                        }
+                    }
+
                 }
                 res = result;
             } catch (Exception e) {
@@ -153,11 +186,5 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
         protected void onPostExecute(String result) {
             displayTickets();
         }
-    }
-    public void buttons(View view){
-
-
-
-
     }
 }

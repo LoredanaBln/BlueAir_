@@ -121,7 +121,7 @@
             app:srcCompat="@drawable/baseline_airplanemode_active_24" />
 
         <TextView
-            android:id="@+id/ticket_date_depart_admin"
+            android:id="@+id/ticketAdminFlightID"
             style="@style/simpleText"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
