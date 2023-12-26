@@ -26,9 +26,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- */
 public class Fragment_Modify_database extends Fragment implements RecyclerViewInterface{
 
     private static final String ARG_PARAM1 = "param1";
@@ -64,6 +61,16 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
         recyclerView = view.findViewById(R.id.recycler_admin);
         buttonDelete = (Button) view.findViewById(R.id.buttonDelete);
         initButtons();
+        buttonAdd = (Button) view.findViewById(R.id.buttonAdd);
+
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddWindowActivity.class) ;
+                getActivity().startActivity(intent);
+            }
+        });
+
         Fragment_Modify_database.ConnectMySql connectMySql = new Fragment_Modify_database.ConnectMySql();
         connectMySql.execute("INIT_DB");
 
@@ -187,4 +194,5 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
             displayTickets();
         }
     }
+
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue2"
+    android:background="@drawable/blur_dark"
     android:paddingStart="10dp"
     android:paddingEnd="10dp"
     tools:context=".Fragment_Modify_database">
