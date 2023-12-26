@@ -15,6 +15,15 @@ import java.util.List;
 public class AdapterAdmin extends RecyclerView.Adapter<AdapterAdmin.ViewHolderAdmin>{
     private final RecyclerViewInterface recyclerViewInterface;
     Context context;
+
+    public List<Ticket> getListOfTickets() {
+        return listOfTickets;
+    }
+
+    public void setListOfTickets(List<Ticket> listOfTickets) {
+        this.listOfTickets = listOfTickets;
+    }
+
     List<Ticket> listOfTickets;
     public AdapterAdmin(Context context, List<Ticket> listOfTickets,  RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
@@ -38,6 +47,7 @@ public class AdapterAdmin extends RecyclerView.Adapter<AdapterAdmin.ViewHolderAd
         holder.ticket_date_arrival.setText(listOfTickets.get(position).getTicket_date_arrival().replaceAll("\\s.*", ""));
         holder.ticket_date_depart.setText(listOfTickets.get(position).getTicket_date_depart().replaceAll("\\s.*", ""));
         holder.checkBox.setChecked(listOfTickets.get(position).getSelected());
+        holder.flightNo.setText(listOfTickets.get(position).getFlightNumber());
        // holder.company.setText(listOfTickets.get(position).getTicket_company());
         //holder.price.setText(listOfTickets.get(position).getTicket_price());
 
@@ -51,35 +61,34 @@ public class AdapterAdmin extends RecyclerView.Adapter<AdapterAdmin.ViewHolderAd
 
     public class ViewHolderAdmin extends RecyclerView.ViewHolder{
 
-        TextView ticket_depart, ticket_arrival, ticket_date_depart, ticket_date_arrival, company, price;
+        TextView ticket_depart, ticket_arrival, ticket_date_depart, ticket_date_arrival, flightNo;
         CheckBox checkBox;
+        public void setCheckBox(Boolean b) {
+            this.checkBox.setChecked(b);
+        }
+
         public ViewHolderAdmin(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
 
             ticket_depart = itemView.findViewById(R.id.ticket_depart_admin);
             ticket_arrival = itemView.findViewById(R.id.ticket_arrival_admin);
-            ticket_date_depart =itemView.findViewById(R.id.ticket_date_depart_admin);
+            ticket_date_depart = itemView.findViewById(R.id.ticketAdminFlightID);
             ticket_date_arrival = itemView.findViewById(R.id.ticket_date_arrive_admin);
             checkBox = itemView.findViewById(R.id.isSelected);
+            flightNo = itemView.findViewById(R.id.ticketAdminFlightID);
+
             //company = itemView.findViewById(R.id.ticket_company);
-           // price = itemView.findViewById(R.id.ticket_price);
+            // price = itemView.findViewById(R.id.ticket_price);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(recyclerViewInterface != null){
+                    if (recyclerViewInterface != null) {
                         int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION){
+                        if (position != RecyclerView.NO_POSITION) {
                             recyclerViewInterface.onItemClick(position);
                         }
                     }
-                }
-            });
-
-            checkBox.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
                 }
             });
 

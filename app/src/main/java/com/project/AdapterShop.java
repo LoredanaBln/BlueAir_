@@ -55,7 +55,7 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.ViewHolderShop
 
             ticket_depart = itemView.findViewById(R.id.ticket_depart_admin);
             ticket_arrival = itemView.findViewById(R.id.ticket_arrival_admin);
-            ticket_date_depart =itemView.findViewById(R.id.ticket_date_depart_admin);
+            ticket_date_depart =itemView.findViewById(R.id.ticketAdminFlightID);
             ticket_date_arrival = itemView.findViewById(R.id.ticket_date_arrive_admin);
             company = itemView.findViewById(R.id.ticket_company);
             price = itemView.findViewById(R.id.ticket_price);

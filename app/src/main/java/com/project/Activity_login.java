@@ -29,7 +29,7 @@ public class Activity_login extends AppCompatActivity {
     private static String password;
     public static  String email, accountName;
     public static int userID;
-
+    private int userType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +103,7 @@ public class Activity_login extends AppCompatActivity {
                     accountName =  rs.getString(5).toString();
                     userID = rs.getInt(1);
                     result = rs.getString(1);
+                    userType = rs.getInt(8);
                 }
                 rs.close();
                 res = result;
@@ -116,9 +117,15 @@ public class Activity_login extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if(result != ""){
-                System.out.println("Logged in with account" + accountName);
-                startActivity(new Intent(Activity_login.this, MainActivity.class));
-                finish();
+                if(userType == 0) {
+                    System.out.println("Logged in with account" + accountName);
+                    startActivity(new Intent(Activity_login.this, MainActivity.class));
+                    finish();
+                } else if (userType == 1) {
+                    startActivity(new Intent(Activity_login.this, Activity_Admin.class));
+                    finish();
+
+                }
             }
             else{
                 showError((TextView)inputPassword2, "Wrong password or email.");
