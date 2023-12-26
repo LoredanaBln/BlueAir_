@@ -1,14 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Fragment_bookings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment_admin_home">
+    android:background="#6DBAC6"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_corner_white"
+        android:backgroundTint="@color/dark_grey"
+        android:orientation="vertical"
+        android:paddingStart="10dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.0">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="63dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="1dp"
+            android:src="@drawable/baseline_person_24"
+            app:layout_constraintEnd_toStartOf="@+id/adminUsername"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/adminUsername"
+            android:layout_width="218dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="53dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="10dp"
+            android:text="Username"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/adminEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/adminEmail"
+            android:layout_width="88dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="113dp"
+            android:layout_marginEnd="82dp"
+            android:layout_marginBottom="10dp"
+            android:text="Email"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/adminFullName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/adminUsername" />
+
+        <TextView
+            android:id="@+id/adminFullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="113dp"
+            android:layout_marginEnd="82dp"
+            android:layout_marginBottom="10dp"
+            android:text="FullName"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/adminPhoneNumber"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.029"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/adminEmail" />
+
+        <TextView
+            android:id="@+id/adminPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginBottom="10dp"
+            android:text="PhoneNumber"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/adminAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/adminFullName" />
+
+        <TextView
+            android:id="@+id/adminAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="113dp"
+            android:layout_marginEnd="76dp"
+            android:layout_marginBottom="172dp"
+            android:text="Address"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/adminPhoneNumber" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="156dp"
+        android:background="@drawable/whatsapp_image_2023_11_30_at_23_43_54"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textTitle"
+            style="@style/titleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="10dp"
+            android:text="Admin"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
