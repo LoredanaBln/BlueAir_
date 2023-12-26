@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blur_dark"
+    android:padding="16sp"
+    android:scrollbarSize="25sp"
+    tools:context=".AddWindowActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+
+        <EditText
+            android:id="@+id/flightNumber"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Flight Number"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightDepartureLocationCity"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Departure Location City"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightDepartureLocationCountry"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Departure Location Country"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightArrivalLocationCity"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Arrival Location City"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightArrivalLocationCountry"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Arrival Location Country"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightDepartureTime"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Departure Time"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightArrivalTime"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Arrival Time"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightAvailableSeats"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Available Seats"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightTotalSeatsFirstClass"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Total Seats First Class"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+
+        <EditText
+            android:id="@+id/flightTotalSeatsBusinessClass"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Total Seats Business Class"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightTotalSeatsEconomyClass"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Total Seats Economy Class"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightAvailableSeatsFirstClass"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Available Seats First Class"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightAvailableSeatsBusinessClass"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Available Seats Business Class"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightAvailableSeatsEconomyClass"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Available Seats Economy Class"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightTicketPriceFirst"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Ticket Price First"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightTicketPriceBusiness"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Ticket Price Business"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightTicketPriceEconomy"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint="Ticket Price Economy"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/flightAirlineID"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:hint=" Airline ID"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/buttonAddFlight"
+            style="@style/blueUnselected"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="36dp"
+            android:backgroundTint="@color/white"
+            android:text="Add Flight"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+</ScrollView>

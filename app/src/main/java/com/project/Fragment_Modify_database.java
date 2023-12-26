@@ -59,6 +59,15 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.recycler_admin);
         buttonDelete = (Button) view.findViewById(R.id.buttonDelete);
+        buttonAdd = (Button) view.findViewById(R.id.buttonAdd);
+
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddWindowActivity.class) ;
+                getActivity().startActivity(intent);
+            }
+        });
 
         Fragment_Modify_database.ConnectMySql connectMySql = new Fragment_Modify_database.ConnectMySql();
         connectMySql.execute("");
@@ -155,9 +164,6 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
         }
     }
     public void buttons(View view){
-
-
-
 
     }
 }
