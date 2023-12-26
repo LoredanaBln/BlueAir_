@@ -1,5 +1,6 @@
 package com.project;
 
+import android.health.connect.datatypes.SexualActivityRecord;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -81,7 +82,16 @@ public class Fragment_hotels extends Fragment {
 
 
     public void createButtons(View view){
+        searchHotels = view.findViewById(R.id.buttonSearchHotels);
+        searchHotels.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String city = spinnerCity.getSelectedItem().toString();
+                String country = spinnerCountry.getSelectedItem().toString();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_hotels_results(country, city)).commit();
 
+            }
+        });
     }
     public void createSpinners(View view){
         // INITIALISE SPINNERS
