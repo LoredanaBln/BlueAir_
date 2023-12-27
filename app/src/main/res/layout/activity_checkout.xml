@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blur"
+    android:fillViewport="true"
+    tools:context=".CheckoutActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/detailTitle"
+            style="@style/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Checkout"
+            android:textAlignment="center"
+            android:textColor="@color/white_blue"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/detailPrice"
+            style="@style/simpleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_corner_white"
+            android:drawableStart="@drawable/baseline_attach_money_24"
+            android:drawableTint="#00E676"
+            android:paddingEnd="8dp"
+            android:text="1200"
+            android:textColor="@color/dark_blue" />
+
+        <!--
+            TODO Check out Google Pay's brand guidelines to discover all button types and styles:
+            https://developers.google.com/pay/api/android/guides/brand-guidelines#assets
+        -->
+        <TextView
+            android:id="@+id/detailPrice2"
+            style="@style/simpleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_corner_white"
+            android:text=" Confirm order:  "
+            android:textColor="@color/green2" />
+
+        <include
+            android:id="@+id/googlePayButton"
+            layout="@layout/buy_with_googlepay_button"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</ScrollView>

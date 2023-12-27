@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.sql.Connection;
@@ -36,11 +37,13 @@ public class fragment_cart extends Fragment implements RecyclerViewInterface {
 
     RecyclerView recyclerView;
     List<Ticket> listOfTickets;
+    List<Integer>listOfTicketNumber;
     Adapter adapter;
     private int total_price = 0;
     TextView priceBox;
     public fragment_cart() {
         listOfTickets = new ArrayList<>();
+        listOfTicketNumber = new ArrayList<>();
     }
 
     public static fragment_cart newInstance(String param1, String param2) {
@@ -55,6 +58,7 @@ public class fragment_cart extends Fragment implements RecyclerViewInterface {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,6 +69,15 @@ public class fragment_cart extends Fragment implements RecyclerViewInterface {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.recycler_cart);
         priceBox = view.findViewById(R.id.textTotalMoney);
+        Button checkout = view.findViewById(R.id.buttonCartCheckOut);
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CheckoutActivity.class);
+                intent.putExtra("Cart_Value", total_price);
+                startActivity(intent);
+            }
+        });
     }
     @Override
     public void onResume() {
@@ -96,6 +109,7 @@ public class fragment_cart extends Fragment implements RecyclerViewInterface {
         intent.putExtra("PRICE", listOfTickets.get(position).getTicket_price());
         intent.putExtra("FLIGHT_ID", Integer.toString(listOfTickets.get(position).getFlightID()));
         intent.putExtra("PERSON", listOfTickets.get(position).getTicket_person());
+        intent.putExtra("NUMBER_OF_TICKETS", (int) listOfTicketNumber.get(position).intValue());
         intent.putExtra("USAGE", false);
         startActivity(intent);
     }
@@ -118,7 +132,7 @@ public class fragment_cart extends Fragment implements RecyclerViewInterface {
                 String result = "";
                 Statement st = con.createStatement();
                 // SELECTS ALL THE ITEMS IN THE USERS CART
-                ResultSet rs = st.executeQuery("SELECT flights.*, airlines.AirlineName, cart.price FROM flights INNER JOIN cart ON flights.flightID = cart.idFlight JOIN airlines ON flights.AirlineID = airlines.AirlineID WHERE cart.iduser = " + Activity_login.userID);
+                ResultSet rs = st.executeQuery("SELECT flights.*, airlines.AirlineName, cart.price, cart.noTickets FROM flights INNER JOIN cart ON flights.flightID = cart.idFlight JOIN airlines ON flights.AirlineID = airlines.AirlineID WHERE cart.iduser = " + Activity_login.userID);
                 ResultSetMetaData rsmd = rs.getMetaData();
 
                 // FOR EACH ITEM SEARCH FOR THE FLIGHT AND ADD IT IN THE LIST
@@ -130,7 +144,8 @@ public class fragment_cart extends Fragment implements RecyclerViewInterface {
                     String dateArrive = rs.getString(8);
                     String company = rs.getString(20);
                     String price = rs.getString(21);
-                    total_price += Integer.parseInt(price);
+                    int numberOfTickets = rs.getInt(22);
+                    total_price += Integer.parseInt(price) * numberOfTickets;
 
                     String flyingClass;
                     if(price.equals(rs.getInt(18)))
@@ -139,6 +154,7 @@ public class fragment_cart extends Fragment implements RecyclerViewInterface {
                         flyingClass = "Business";
                     else flyingClass = "First";
                     int id = rs.getInt(1);
+                    listOfTicketNumber.add(numberOfTickets);
                     listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, flyingClass, company, price, id, Activity_login.accountName));
                 }
                 res = result;

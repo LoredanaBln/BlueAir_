@@ -46,6 +46,7 @@ public class TicketView extends AppCompatActivity {
         String flyCLass = getIntent().getStringExtra("CLASS");
         String person = getIntent().getStringExtra("PERSON");
         String price = getIntent().getStringExtra("PRICE");
+        int numberOfTickets = getIntent().getIntExtra("NUMBER_OF_TICKETS", 1);
         flightID = getIntent().getStringExtra("FLIGHT_ID");
         _USAGE_TYPE = getIntent().getBooleanExtra("USAGE", true);
 
@@ -63,7 +64,7 @@ public class TicketView extends AppCompatActivity {
         ticketDepartDate.setText(datDepart);
         ticketArrivalDate.setText(dateArrival);
         ticketCompany.setText(company);
-        ticketPrice.setText(price);
+        ticketPrice.setText("" + (Integer.parseInt(price) * numberOfTickets));
         ticketClass.setText(flyCLass);
         ticketPassenger.setText(person);
 
@@ -79,9 +80,18 @@ public class TicketView extends AppCompatActivity {
         });
 
         if(_USAGE_TYPE == true){
-            addToCart.setText("ADD TO CART");
+            if(numberOfTickets == 1)
+                addToCart.setText("ADD TO CART");
+            else
+                addToCart.setText("ADD TO CART x" + numberOfTickets);
         }
-        else addToCart.setText("REMOVE FROM CART");
+        else {
+            if(numberOfTickets == 1)
+                addToCart.setText("REMOVE FROM CART");
+            else
+                addToCart.setText("REMOVE FROM CART x" + numberOfTickets);
+
+        }
 
     }
 
@@ -104,10 +114,11 @@ public class TicketView extends AppCompatActivity {
                 CallableStatement execProc;
 
                 if(_USAGE_TYPE == true){
-                    execProc = con.prepareCall("CALL InsertIntoCart(?,?,?)");
+                    execProc = con.prepareCall("CALL InsertIntoCart(?,?,?,?)");
                     execProc.setString(1, Integer.toString(Activity_login.userID));
                     execProc.setString(2, flightID);
                     execProc.setString(3, getIntent().getStringExtra("PRICE"));
+                    execProc.setInt(4, getIntent().getIntExtra("NUMBER_OF_TICKETS", 1));
                 }
                 else{
                     execProc = con.prepareCall("CALL RemoveFromCart(?,?)");
