@@ -1,6 +1,7 @@
 package com.project;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,12 @@ import com.project.R;
 import com.project.util.PaymentsUtil;
 import com.project.viewmodel.CheckoutViewModel;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+import java.util.List;
 import java.util.Locale;
 
 import org.json.JSONException;
@@ -40,6 +47,15 @@ public class CheckoutActivity extends AppCompatActivity {
     private ActivityCheckoutBinding layoutBinding;
     private View googlePayButton;
 
+    //ONLY USED FOR SQL!
+    List<Ticket> listOfTickets;
+    List<Integer>listOfTicketNumber;
+    private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/" + DBConnectionCredentials.databaseName +"?characterEncoding=latin1&autoReconnect=true&useSSL=false";
+    private static final String user = DBConnectionCredentials.username;
+    private static final String pass = DBConnectionCredentials.password;
+
+
+
     /**
      * Initialize the Google Pay API on creation of the activity
      *
@@ -55,6 +71,9 @@ public class CheckoutActivity extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.detailPrice);
         textView.setText("" + getIntent().getIntExtra("Cart_Value",1));
+        CheckoutActivity.ConnectMySql connectMySql = new CheckoutActivity.ConnectMySql();
+        connectMySql.execute("FIND_TICKETS");
+
     }
 
     private void initializeUi() {
@@ -188,5 +207,66 @@ public class CheckoutActivity extends AppCompatActivity {
         }
 
         Log.e("loadPaymentData failed", errorString);
+    }
+
+
+    //SQL HERE !!!!!!
+    private class ConnectMySql extends AsyncTask<String, Void, String> {
+        String res = "";
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection(url, user, pass);
+                System.out.println("Databaseection success");
+
+                String result = "";
+                if(params[0] == "FIND_TICKETS") {
+                    Statement st = con.createStatement();
+                    // SELECTS ALL THE ITEMS IN THE USERS CART
+                    ResultSet rs = st.executeQuery("SELECT flights.*, airlines.AirlineName, cart.price, cart.noTickets FROM flights INNER JOIN cart ON flights.flightID = cart.idFlight JOIN airlines ON flights.AirlineID = airlines.AirlineID WHERE cart.iduser = " + Activity_login.userID);
+                    ResultSetMetaData rsmd = rs.getMetaData();
+
+                    // FOR EACH ITEM SEARCH FOR THE FLIGHT AND ADD IT IN THE LIST
+                    while (rs.next()) {
+                        String depart = rs.getString(3);
+                        String arrive = rs.getString(5);
+
+                        String dateDepart = rs.getString(7);
+                        String dateArrive = rs.getString(8);
+                        String company = rs.getString(20);
+                        String price = rs.getString(21);
+                        int numberOfTickets = rs.getInt(22);
+
+                        String flyingClass;
+                        if (price.equals(rs.getInt(18)))
+                            flyingClass = "Economy";
+                        else if (price.equals(rs.getString(17)))
+                            flyingClass = "Business";
+                        else flyingClass = "First";
+                        int id = rs.getInt(1);
+                        listOfTicketNumber.add(numberOfTickets);
+                        listOfTickets.add(new Ticket(depart, arrive, dateDepart, dateArrive, flyingClass, company, price, id, Activity_login.accountName));
+                    }
+                }
+                res = result;
+            } catch (Exception e) {
+                e.printStackTrace();
+                res = e.toString();
+
+            }
+            return res;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
     }
 }
