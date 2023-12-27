@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
 
-public class Fragment_bookings extends Fragment {
+public class    Fragment_bookings extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";

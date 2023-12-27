@@ -64,7 +64,7 @@ public class TicketView extends AppCompatActivity {
         ticketDepartDate.setText(datDepart);
         ticketArrivalDate.setText(dateArrival);
         ticketCompany.setText(company);
-        ticketPrice.setText("" + (Integer.parseInt(price) * numberOfTickets));
+        ticketPrice.setText("" + (Double.parseDouble(price) * numberOfTickets));
         ticketClass.setText(flyCLass);
         ticketPassenger.setText(person);
 
