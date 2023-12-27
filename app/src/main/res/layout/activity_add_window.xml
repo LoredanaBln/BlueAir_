@@ -6,7 +6,7 @@
     android:background="@drawable/blur_dark"
     android:padding="16sp"
     android:scrollbarSize="25sp"
-    tools:context=".AddWindowActivity">
+    tools:context=".AddFlightActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

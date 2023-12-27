@@ -26,24 +26,13 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         app:layout_constraintVertical_bias="0.0">
 
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="63dp"
-            android:layout_height="67dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="1dp"
-            android:src="@drawable/baseline_person_24"
-            app:layout_constraintEnd_toStartOf="@+id/adminUsername"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/adminUsername"
             android:layout_width="218dp"
             android:layout_height="40dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="53dp"
-            android:layout_marginEnd="36dp"
+            android:layout_marginEnd="82dp"
             android:layout_marginBottom="10dp"
             android:text="Username"
             android:textColor="@color/white"
@@ -51,14 +40,15 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/adminEmail"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/adminEmail"
             android:layout_width="88dp"
             android:layout_height="37dp"
-            android:layout_marginStart="113dp"
+            android:layout_marginStart="60dp"
             android:layout_marginEnd="82dp"
             android:layout_marginBottom="10dp"
             android:text="Email"
@@ -76,7 +66,7 @@
             android:id="@+id/adminFullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="113dp"
+            android:layout_marginStart="60dp"
             android:layout_marginEnd="82dp"
             android:layout_marginBottom="10dp"
             android:text="FullName"
@@ -86,7 +76,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/adminPhoneNumber"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.029"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/adminEmail" />
 
@@ -94,8 +84,8 @@
             android:id="@+id/adminPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginEnd="65dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="82dp"
             android:layout_marginBottom="10dp"
             android:text="PhoneNumber"
             android:textColor="@color/white"
@@ -103,7 +93,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/adminAddress"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/adminFullName" />
 
@@ -111,8 +101,8 @@
             android:id="@+id/adminAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="113dp"
-            android:layout_marginEnd="76dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="82dp"
             android:layout_marginBottom="172dp"
             android:text="Address"
             android:textAlignment="viewStart"

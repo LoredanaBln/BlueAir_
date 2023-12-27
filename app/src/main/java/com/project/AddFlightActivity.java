@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.content.Intent;
 import android.widget.Toast;
 
 import java.sql.CallableStatement;
@@ -16,7 +15,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-public class AddWindowActivity extends AppCompatActivity {
+public class AddFlightActivity extends AppCompatActivity {
 
     private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/" + DBConnectionCredentials.databaseName + "?characterEncoding=latin1&autoReconnect=true&useSSL=false";
     private static final String user = DBConnectionCredentials.username;
@@ -138,7 +137,7 @@ public class AddWindowActivity extends AppCompatActivity {
             AirlineID = airlineId;
 
 
-            AddWindowActivity.ConnectMySql connectMySql = new AddWindowActivity.ConnectMySql();
+            AddFlightActivity.ConnectMySql connectMySql = new AddFlightActivity.ConnectMySql();
             connectMySql.execute("");
 
 
