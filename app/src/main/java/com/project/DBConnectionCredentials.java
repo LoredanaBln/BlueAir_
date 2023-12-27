@@ -7,7 +7,7 @@ public class DBConnectionCredentials {
 //    public static String password = "octombrie14";
 //    public static String databaseName = "project";
 
-    public static String ip = "192.168.1.6:3305";
+    public static String ip = "192.168.1.2:3305";
     public static String username = "admin";
     public static String password = "ianuarie31";
     public static String databaseName = "project_airline";
