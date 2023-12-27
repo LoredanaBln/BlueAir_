@@ -99,7 +99,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+            app:layout_constraintTop_toBottomOf="@+id/ticketNumber" />
 
         <Spinner
             android:id="@+id/spinnerFrom"
@@ -141,7 +141,7 @@
             android:scrollbarSize="0dp"
             android:spinnerMode="dialog"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/editTextNumber"
+            app:layout_constraintStart_toEndOf="@+id/ticketNumber"
             app:layout_constraintTop_toBottomOf="@+id/TextClass" />
 
         <Button
@@ -159,7 +159,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textFrom3" />
 
         <EditText
-            android:id="@+id/editTextNumber"
+            android:id="@+id/ticketNumber"
             style="@style/blueUnselected"
             android:layout_width="0dp"
             android:layout_height="48dp"

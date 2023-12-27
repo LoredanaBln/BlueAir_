@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ public class Fragment_home extends Fragment {
 
     private Spinner spinnerFrom, spinnerTo, spinnerClass;
     private TextView titleReturn;
+    private EditText textNumberPassengers;
     private Button buttonRoundTrip, buttonOneway, textDepart, textReturn;
     private Button buttonSearchFlights;
 
@@ -92,6 +94,7 @@ public class Fragment_home extends Fragment {
     }
 
     public void createButtons(View view){
+        textNumberPassengers = (EditText) view.findViewById(R.id.ticketNumber);
         textDepart = (Button) view.findViewById(R.id.textDepart);
         buttonSearchFlights = (Button)view.findViewById(R.id.buttonSearchFlight);
         textDepart.setOnClickListener(new View.OnClickListener() {
@@ -138,9 +141,10 @@ public class Fragment_home extends Fragment {
                 // obvious
                 String dateDepart = textDepart.getText().toString();
                 String flyclass = spinnerClass.getSelectedItem().toString();
+                int noTickets = Integer.parseInt(textNumberPassengers.getText().toString());
                 System.out.println(depart + arrive + dateDepart + flyclass);
 
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_shop(depart, arrive, dateDepart, flyclass)).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_shop(depart, arrive, dateDepart, flyclass, noTickets)).commit();
 
             }
         });
