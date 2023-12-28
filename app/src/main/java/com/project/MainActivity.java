@@ -66,10 +66,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
         else if(item.getItemId() == R.id.nav_tickets){
-           // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_bookings()).commit();
-            //drawerLayout.closeDrawer(GravityCompat.START);
-            Intent intent = new Intent(this, CheckoutActivity.class);
-            startActivity(intent);
+           getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_bookings()).commit();
+            drawerLayout.closeDrawer(GravityCompat.START);
         }
         else if(item.getItemId() == R.id.nav_about){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_aboutus()).commit();

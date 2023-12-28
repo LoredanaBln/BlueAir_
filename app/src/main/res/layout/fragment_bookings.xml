@@ -29,11 +29,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_bookings"
             android:layout_width="match_parent"
-            android:layout_height="413dp"
+            android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginStart="18dp"
             android:layout_marginEnd="18dp"
-            android:layout_marginBottom="16dp"
             android:paddingStart="8dp"
             android:paddingTop="8dp"
 

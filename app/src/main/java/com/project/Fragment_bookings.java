@@ -1,5 +1,6 @@
 package com.project;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
 
-public class    Fragment_bookings extends Fragment {
+public class    Fragment_bookings extends Fragment implements RecyclerViewInterface {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -31,11 +32,13 @@ public class    Fragment_bookings extends Fragment {
 
     RecyclerView recyclerView;
     List<Ticket> listOfTickets;
+    List<Integer> listOfTicketNumber;
     Adapter adapter;
 
 
     public Fragment_bookings() {
         listOfTickets = new ArrayList<>();
+        listOfTicketNumber = new ArrayList<>();
 
     }
     public static fragment_cart newInstance(String param1, String param2) {
@@ -57,19 +60,37 @@ public class    Fragment_bookings extends Fragment {
             return inflater.inflate(R.layout.fragment_bookings, container, false);
         }
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
-            recyclerView = view.findViewById(R.id.recycler_cart);
+            recyclerView = view.findViewById(R.id.recycler_bookings);
             Fragment_bookings.ConnectMySql connectMySql = new Fragment_bookings.ConnectMySql();
             connectMySql.execute("");
     }
 
         public void displayTickets(){
-
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
-
-            adapter = new Adapter(getActivity(), listOfTickets);
-            recyclerView.setAdapter(adapter);
+            AdapterShop adapterShop = new AdapterShop(getActivity(), listOfTickets, this);
+            recyclerView.setAdapter(adapterShop);
         }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(getActivity(), TicketView.class);
+        //TLDR ADD ITEMS NEEDED FOR DISPLAY
+        intent.putExtra("DEPART", listOfTickets.get(position).getTicket_depart());
+        intent.putExtra("ARRIVAL", listOfTickets.get(position).getTicket_arrival());
+        intent.putExtra("DATE_DEPART", listOfTickets.get(position).getTicket_date_depart());
+        intent.putExtra("DATE_ARRIVAL", listOfTickets.get(position).getTicket_date_arrival());
+        intent.putExtra("CLASS", listOfTickets.get(position).getTicket_class());
+        intent.putExtra("COMPANY", listOfTickets.get(position).getTicket_company());
+        intent.putExtra("PRICE", listOfTickets.get(position).getTicket_price());
+        intent.putExtra("FLIGHT_ID", Integer.toString(listOfTickets.get(position).getFlightID()));
+        intent.putExtra("PERSON", listOfTickets.get(position).getTicket_person());
+        intent.putExtra("NUMBER_OF_TICKETS", (int) listOfTicketNumber.get(position).intValue());
+        intent.putExtra("USAGE", false);
+        intent.putExtra("BOOKING", true);
+        startActivity(intent);
+
+    }
 
     private class ConnectMySql extends AsyncTask<String, Void, String> {
         String res = "";
@@ -84,25 +105,36 @@ public class    Fragment_bookings extends Fragment {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con = DriverManager.getConnection(url, user, pass);
-                System.out.println("Databaseection success");
+                System.out.println("Connection success");
 
                 String result = "";
                 Statement st = con.createStatement();
                 // SELECTS ALL THE ITEMS IN THE USERS CART
-                ResultSet rs = st.executeQuery("SELECT flights.* FROM flights INNER JOIN cart ON flights.flightID = cart.idFlight WHERE cart.iduser = " + Activity_login.userID);
+                ResultSet rs = st.executeQuery("select flights.*, airlines.AirlineName, bookings.NumberOfTickets, bookings.ticketClass from flights JOIN bookings on flights.FlightID = bookings.FlightID JOIN airlines on flights.AirlineID = airlines.airlineID where bookings.UserID = " + Activity_login.userID);
                 ResultSetMetaData rsmd = rs.getMetaData();
 
                 // FOR EACH ITEM SEARCH FOR THE FLIGHT AND ADD IT IN THE LIST
                 while (rs.next()) {
                     String depart = rs.getString(3);
                     String arrive = rs.getString(5);
+
                     String dateDepart = rs.getString(7);
                     String dateArrive = rs.getString(8);
-                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateDepart, "3h", "Wizz", "30"));
+                    String company = rs.getString(20);
+                    String flyingClass = rs.getString(22);
 
-                    dateDepart = rs.getString(7).replaceAll("\\s.*", "");
-                    dateArrive = rs.getString(8).replaceAll("\\s.*", "");
-                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, "3h", "Wizz", "22"));
+                    String price;
+                    if (flyingClass.equals("Economy"))
+                        price = rs.getString(18);
+                    else if (flyingClass.equals("Business"))
+                        price = rs.getString(17);
+                    else price = rs.getString(16);
+
+                    int numberOfTickets = rs.getInt(21);
+
+                    listOfTicketNumber.add(numberOfTickets);
+                    int id = rs.getInt(1);
+                    listOfTickets.add(new Ticket(depart,arrive, dateDepart, dateArrive, flyingClass, company, price, id, Activity_login.accountName));
                 }
                 res = result;
             } catch (Exception e) {

@@ -264,7 +264,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="aboutUs">BlueAir is your all-in-one travel partner specializing in flights, hotel bookings, and car rentals. Our user-friendly platform offers a wide range of options at competitive prices, backed by a team of dedicated experts committed to making your travel dreams a reality. We prioritize personalization, convenience, and exceptional customer service to ensure your journey is seamless and unforgettable. Choose BlueAir for a hassle-free and tailored travel experience....................................................................................................................................................................................................................</string>
+    <string name="aboutUs">BlueAir is your all-in-one travel partner specializing in flights, hotel bookings, and car rentals. Our user-friendly platform offers a wide range of options at competitive prices, backed by a team of dedicated experts committed to making your travel dreams a reality. We prioritize personalization, convenience, and exceptional customer service to ensure your journey is seamless and unforgettable. Choose BlueAir for a hassle-free and tailored travel experience.</string>
     <string name="title_activity_hotel_view">HotelView</string>
 
     <!-- Checkout activity -->
