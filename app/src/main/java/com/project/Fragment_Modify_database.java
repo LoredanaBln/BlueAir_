@@ -66,7 +66,7 @@ public class Fragment_Modify_database extends Fragment implements RecyclerViewIn
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AddWindowActivity.class) ;
+                Intent intent = new Intent(getActivity(), AddFlightActivity.class) ;
                 getActivity().startActivity(intent);
             }
         });

@@ -30,7 +30,7 @@
             android:value="true" />
 
         <activity
-            android:name=".AddWindowActivity"
+            android:name=".AddFlightActivity"
             android:exported="false" />
         <activity
             android:name=".HotelView"

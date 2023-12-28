@@ -1,18 +1,23 @@
 package com.project;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Fragment_admin_home#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+
 public class Fragment_admin_home extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -24,40 +29,27 @@ public class Fragment_admin_home extends Fragment {
     private static final String user = DBConnectionCredentials.username;
     private static final String pass = DBConnectionCredentials.password;
 
+    private TextView adminUsername, adminEmail, adminName, adminPhone, adminAddress;
+    public String accEmail, accName, accUsername, accPhone, accAddress;
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public Fragment_admin_home() {
         // Required empty public constructor
     }
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        adminUsername = view.findViewById(R.id.adminUsername);
+        adminEmail = view.findViewById(R.id.adminEmail);
+        adminName = view.findViewById(R.id.adminFullName);
+        adminPhone = view.findViewById(R.id.adminPhoneNumber);
+        adminAddress = view.findViewById(R.id.adminAddress);
+        Fragment_admin_home.ConnectMySql connectMySql = new Fragment_admin_home.ConnectMySql();
+        connectMySql.execute("");
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragment_admin_home.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Fragment_admin_home newInstance(String param1, String param2) {
-        Fragment_admin_home fragment = new Fragment_admin_home();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -65,5 +57,67 @@ public class Fragment_admin_home extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_admin_home, container, false);
+    }
+
+    public void displayInfo(){
+        if(accName == null) adminName.setText("Full Name");
+        else adminName.setText(accName);
+
+        if(accEmail == null) adminEmail.setText("Email");
+        else adminEmail.setText(accEmail);
+
+        if(accUsername == null) adminUsername.setText("Username");
+        else adminUsername.setText(accUsername);
+
+        if(accAddress == null) adminAddress.setText("Address");
+        else adminAddress.setText(accAddress);
+
+        if(accPhone == null) adminPhone.setText("Phone Number");
+        else adminPhone.setText(accPhone);
+    }
+
+    private class ConnectMySql extends AsyncTask<String, Void, String> {
+        String res = "";
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            System.out.println(url);
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection(url, user, pass);
+                System.out.println("Databaseection success");
+
+                String result = "";
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery("SELECT * from users where UserId =" + Activity_login.userID);
+                ResultSetMetaData rsmd = rs.getMetaData();
+
+                while (rs.next()) {
+                    accName =  rs.getString(2).toString();
+                    accUsername = rs.getString(5).toString();
+                    accEmail  = rs.getString(3).toString();
+                    accPhone = rs.getString(6).toString();
+                    accAddress = rs.getString(7).toString();
+
+                    result = rs.getString(1);
+                }
+                rs.close();
+                res = result;
+            } catch (Exception e) {
+                e.printStackTrace();
+                res = e.toString();
+            }
+            return res;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            displayInfo();
+        }
     }
 }
