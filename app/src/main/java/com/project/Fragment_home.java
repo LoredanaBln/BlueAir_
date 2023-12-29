@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -23,7 +24,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Fragment_home extends Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -42,8 +48,10 @@ public class Fragment_home extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    Map<String, List<String>> countryConnections;
+
     public Fragment_home() {
-        // Required empty public constructor
+        countryConnections = new HashMap<>();
     }
 
     public static Fragment_home newInstance(String param1, String param2) {
@@ -72,19 +80,48 @@ public class Fragment_home extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
-        createSpinners(view);
+        Fragment_home.ConnectMySql connectMySql = new Fragment_home.ConnectMySql();
+        connectMySql.execute("CREATE_SPINNER");
         createButtons(view);
     }
-    public void createSpinners(View view){
+    public void createSpinners(){
+        View view = getView();
         // INITIALISE SPINNERS
         spinnerFrom = (Spinner) view.findViewById(R.id.spinnerFrom);
         spinnerTo = (Spinner) view.findViewById(R.id.spinnerTo);
         spinnerClass = (Spinner) view.findViewById(R.id.spinnerClass);
         // DEFINE ADAPTERS
-        ArrayAdapter countryAdapter, classAdapter;
-        countryAdapter = ArrayAdapter.createFromResource(getActivity(),R.array.coutries, android.R.layout.simple_spinner_item);
+        ArrayAdapter countryAdapter;
+        List<String> countries = new ArrayList<>();
+
+        for (Map.Entry<String, List<String>> entry : countryConnections.entrySet()){
+            countries.add(entry.getKey());
+        }
+        Collections.sort(countries);
+        countryAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, countries);
         countryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        spinnerFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String country = spinnerFrom.getSelectedItem().toString();
+                if(countryConnections.get(country) != null && countryConnections.get(country).size() != 0) {
+                    ArrayAdapter cityAdapter;
+                    cityAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, countryConnections.get(country));
+                    cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerTo.setAdapter(cityAdapter);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // do nothing
+            }
+        });
+
+
+        ArrayAdapter classAdapter;
         classAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.flightClasses, android.R.layout.simple_spinner_item);
         classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //CONNECT ADAPTERS
@@ -140,7 +177,16 @@ public class Fragment_home extends Fragment {
                 String arrive = spinnerTo.getSelectedItem().toString();
                 // obvious
                 String dateDepart = textDepart.getText().toString();
+                if(textDepart.getText().toString().equals("")){
+                    showError((Button) textDepart, "Please select a valid date.");
+                    return;
+                }
+
                 String flyclass = spinnerClass.getSelectedItem().toString();
+                if(textNumberPassengers.getText().toString().equals("")){
+                    showError((TextView) textNumberPassengers, "Please select number of passengers.");
+                    return;
+                }
                 int noTickets = Integer.parseInt(textNumberPassengers.getText().toString());
                 System.out.println(depart + arrive + dateDepart + flyclass);
 
@@ -148,5 +194,61 @@ public class Fragment_home extends Fragment {
 
             }
         });
+    }
+    private void showError(TextView input, String s){
+        input.setError(s);
+        input.requestFocus();
+    }
+    private void showError(Button input, String s){
+        input.setError(s);
+        input.requestFocus();
+    }
+
+    private class ConnectMySql extends AsyncTask<String, Void, String> {
+        String res = "";
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection(url, user, pass);
+                System.out.println("Connection success");
+
+                String result = "";
+                if(params[0] == "CREATE_SPINNER") {
+                    Statement st = con.createStatement();
+                    // SELECTS ALL THE COUNTRY AND CITY PAIR
+                    ResultSet rs = st.executeQuery("select distinct flights.DepartureLocationCountry, flights.ArrivalLocationCountry from flights order by flights.DepartureLocationCountry");
+                    ResultSetMetaData rsmd = rs.getMetaData();
+
+                    // FOR EACH COUNTRY ADD CITY TO LIST
+                    while (rs.next()) {
+                        String country = rs.getString(1);
+                        String countryArrive = rs.getString(2);
+
+                        if (!countryConnections.containsKey(country)) {
+                            countryConnections.put(country, new ArrayList<String>());
+                        }
+                        countryConnections.get(country).add(countryArrive);
+                    }
+                }
+                res = result;
+            } catch (Exception e) {
+                e.printStackTrace();
+                res = e.toString();
+
+            }
+            return res;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            createSpinners();
+        }
     }
 }
