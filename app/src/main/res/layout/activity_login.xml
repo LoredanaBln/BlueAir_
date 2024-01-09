@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/blur_dark"
+    android:background="@drawable/_e7a5793aca230f476c7d2f7490c68bf"
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
     tools:context=".Activity_register">
@@ -15,6 +15,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/circle"
+        android:backgroundTint="@color/wallet_dim_foreground_disabled_holo_dark"
         android:drawableLeft="@drawable/ic_mail"
         android:drawablePadding="3dp"
         android:ems="10"
@@ -35,45 +36,39 @@
 
     <TextView
         android:id="@+id/register"
-        style="@style/titleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
+        style="@style/Widget.MaterialComponents.Snackbar.TextView"
+        android:layout_width="432dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="@color/wallet_dim_foreground_disabled_holo_dark"
+        android:breakStrategy="simple"
         android:fontFamily="sans-serif-medium"
-        android:text="Login"
+        android:text="We're going on a trip."
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/wallet_bright_foreground_holo_dark"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/forgotPasswordtext"
-        style="@style/simpleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="28dp"
-        android:text="Forgot password?"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPassword2" />
 
     <Button
         android:id="@+id/buttonLogin"
         style="@style/blueUnselected"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="69dp"
+        android:drawableTint="@color/greenish"
         android:text="LOGIN"
-        android:textColor="@color/black"
-        app:backgroundTint="@android:color/white"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/wallet_dim_foreground_disabled_holo_dark"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgotPasswordtext" />
+        app:layout_constraintTop_toBottomOf="@+id/inputPassword2" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -113,6 +108,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/circle"
+        android:backgroundTint="@color/wallet_dim_foreground_disabled_holo_dark"
         android:drawableLeft="@drawable/ic_eye"
         android:drawablePadding="3dp"
         android:ems="10"

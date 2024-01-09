@@ -17,24 +17,25 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="36dp"
-            android:background="@color/light_blue"
+            android:background="@color/wallet_dim_foreground_disabled_holo_dark"
             android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@drawable/_e7a5793aca230f476c7d2f7490c68bf" />
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        android:background="@color/white_blue"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/material_dynamic_secondary40"
         app:headerLayout="@menu/nav_header"
-        app:itemIconTint="@color/dark_blue"
-        app:itemTextColor="@color/dark_blue"
+        app:itemIconTint="@color/white_blue"
+        app:itemTextColor="@color/white_blue"
         app:menu="@menu/nav_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

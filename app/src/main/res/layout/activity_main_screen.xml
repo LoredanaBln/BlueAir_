@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/_e7a5793aca230f476c7d2f7490c68bf"
     android:hapticFeedbackEnabled="true"
-    android:background="@drawable/blur"
     tools:context=".Main_screen_Activity">
 
     <Button
@@ -14,9 +14,9 @@
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:text="User"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:backgroundTint="@android:color/white"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:backgroundTint="@color/wallet_dim_foreground_disabled_holo_dark"
         app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,15 +32,15 @@
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:text="Admin"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:backgroundTint="@android:color/white"
-        app:iconTint="#FFFFFF"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:backgroundTint="@color/wallet_dim_foreground_disabled_holo_dark"
+        app:iconTint="@color/wallet_dim_foreground_disabled_holo_dark"
         app:layout_constraintBottom_toTopOf="@+id/buttonUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.881"
-        app:rippleColor="@color/white" />
+        app:rippleColor="@color/wallet_dim_foreground_disabled_holo_dark" />
 </androidx.constraintlayout.widget.ConstraintLayout>
