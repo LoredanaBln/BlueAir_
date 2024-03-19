@@ -6,7 +6,7 @@ Android application for a plane ticket booking business, with a user interface w
 ## Features
 
 - ✅ Database connection using JDBC driver.
-- ✅ The use of Goggle Pay API for secure transactions between the users and the database.
+- ✅ The use of Google Pay API for secure transactions between the users and the database.
 - ✅ Second admin interface for remote database managing.
 - ✅ Dynamic user interface based on stored data.
 
