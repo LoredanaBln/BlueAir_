@@ -21,6 +21,7 @@ import com.project.R;
 import com.project.util.PaymentsUtil;
 import com.project.viewmodel.CheckoutViewModel;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -48,8 +49,6 @@ public class CheckoutActivity extends AppCompatActivity {
     private View googlePayButton;
 
     //ONLY USED FOR SQL!
-    List<Ticket> listOfTickets;
-    List<Integer>listOfTicketNumber;
     private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/" + DBConnectionCredentials.databaseName +"?characterEncoding=latin1&autoReconnect=true&useSSL=false";
     private static final String user = DBConnectionCredentials.username;
     private static final String pass = DBConnectionCredentials.password;
@@ -71,8 +70,6 @@ public class CheckoutActivity extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.detailPrice);
         textView.setText("" + getIntent().getIntExtra("Cart_Value",1));
-        CheckoutActivity.ConnectMySql connectMySql = new CheckoutActivity.ConnectMySql();
-        connectMySql.execute("FIND_TICKETS");
 
     }
 
@@ -182,8 +179,13 @@ public class CheckoutActivity extends AppCompatActivity {
                     this, getString(R.string.payments_show_name, billingName),
                     Toast.LENGTH_LONG).show();
 
+            //UPDATE DB
+            CheckoutActivity.ConnectMySql connectMySql = new CheckoutActivity.ConnectMySql();
+            connectMySql.execute("");
+            //UPDATE DB
             // Logging token string.
             Log.d("Google Pay token: ", token);
+            finish();
 
         } catch (JSONException e) {
             throw new RuntimeException("The selected garment cannot be parsed from the list of elements");
@@ -227,34 +229,14 @@ public class CheckoutActivity extends AppCompatActivity {
                 System.out.println("Databaseection success");
 
                 String result = "";
-                if(params[0] == "FIND_TICKETS") {
-                    Statement st = con.createStatement();
-                    // SELECTS ALL THE ITEMS IN THE USERS CART
-                    ResultSet rs = st.executeQuery("SELECT flights.*, airlines.AirlineName, cart.price, cart.noTickets FROM flights INNER JOIN cart ON flights.flightID = cart.idFlight JOIN airlines ON flights.AirlineID = airlines.AirlineID WHERE cart.iduser = " + Activity_login.userID);
-                    ResultSetMetaData rsmd = rs.getMetaData();
 
-                    // FOR EACH ITEM SEARCH FOR THE FLIGHT AND ADD IT IN THE LIST
-                    while (rs.next()) {
-                        String depart = rs.getString(3);
-                        String arrive = rs.getString(5);
+                //FUNCTION DOES ALL THE JOB FOR BOOKING!
+                CallableStatement execProc;
+                execProc = con.prepareCall("CALL BookFlightsForUser(?)");
+                execProc.setInt(1, Activity_login.userID);
 
-                        String dateDepart = rs.getString(7);
-                        String dateArrive = rs.getString(8);
-                        String company = rs.getString(20);
-                        String price = rs.getString(21);
-                        int numberOfTickets = rs.getInt(22);
+                execProc.execute();
 
-                        String flyingClass;
-                        if (price.equals(rs.getInt(18)))
-                            flyingClass = "Economy";
-                        else if (price.equals(rs.getString(17)))
-                            flyingClass = "Business";
-                        else flyingClass = "First";
-                        int id = rs.getInt(1);
-                        listOfTicketNumber.add(numberOfTickets);
-                        listOfTickets.add(new Ticket(depart, arrive, dateDepart, dateArrive, flyingClass, company, price, id, Activity_login.accountName));
-                    }
-                }
                 res = result;
             } catch (Exception e) {
                 e.printStackTrace();

@@ -13,6 +13,8 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -68,6 +70,10 @@ public class TicketView extends AppCompatActivity {
         ticketClass.setText(flyCLass);
         ticketPassenger.setText(person);
 
+        TextView t = findViewById(R.id.textView5);
+        t.setText("Passengers: " + numberOfTickets);
+
+
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +98,9 @@ public class TicketView extends AppCompatActivity {
                 addToCart.setText("REMOVE FROM CART x" + numberOfTickets);
 
         }
+        if(getIntent().hasExtra("BOOKING")){
+            addToCart.setVisibility(View.INVISIBLE);
+        }
 
     }
 
@@ -114,11 +123,12 @@ public class TicketView extends AppCompatActivity {
                 CallableStatement execProc;
 
                 if(_USAGE_TYPE == true){
-                    execProc = con.prepareCall("CALL InsertIntoCart(?,?,?,?)");
+                    execProc = con.prepareCall("CALL InsertIntoCart(?,?,?,?,?)");
                     execProc.setString(1, Integer.toString(Activity_login.userID));
                     execProc.setString(2, flightID);
                     execProc.setString(3, getIntent().getStringExtra("PRICE"));
                     execProc.setInt(4, getIntent().getIntExtra("NUMBER_OF_TICKETS", 1));
+                    execProc.setString(5,getIntent().getStringExtra("CLASS"));
                 }
                 else{
                     execProc = con.prepareCall("CALL RemoveFromCart(?,?)");

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/blur_dark"
+    android:background="@drawable/_e7a93aca230f476c7d2f7490c68bf"
     android:padding="16sp"
     android:scrollbarSize="25sp"
     tools:context=".AddFlightActivity">
@@ -203,7 +203,7 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginTop="36dp"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/wallet_dim_foreground_disabled_holo_dark"
             android:text="Add Flight"
             android:textColor="@color/black" />
 

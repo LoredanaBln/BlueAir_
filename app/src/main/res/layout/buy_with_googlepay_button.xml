@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="48sp"
-    android:background="@drawable/googlepay_button_no_shadow_background"
+    android:background="@color/wallet_bright_foreground_disabled_holo_light"
     android:clickable="true"
     android:contentDescription="@string/buy_with_googlepay_button_content_description"
     android:focusable="true"
@@ -26,8 +26,9 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="409dp"
+        android:layout_height="46dp"
+        android:background="@color/wallet_dim_foreground_disabled_holo_dark"
         android:duplicateParentState="true"
         android:scaleType="fitXY"
         android:src="@drawable/googlepay_button_overlay" />

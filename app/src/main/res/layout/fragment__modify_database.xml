@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/blur_dark"
+    android:background="@drawable/_e7a5793aca230f476c7d2f7490c68bf"
     android:paddingStart="10dp"
     android:paddingEnd="10dp"
     tools:context=".Fragment_Modify_database">
@@ -13,7 +13,7 @@
         android:id="@+id/linearLayout2"
         android:layout_width="391dp"
         android:layout_height="47dp"
-        android:background="@color/dark_grey"
+        android:background="@color/wallet_dim_foreground_disabled_holo_dark"
         android:backgroundTint="@color/dark_blue"
         app:layout_constraintBottom_toTopOf="@+id/recycler_admin"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,12 +51,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_admin"
-        android:layout_width="385dp"
-        android:layout_height="650dp"
+        android:layout_width="354dp"
+        android:layout_height="593dp"
         android:layout_margin="8dp"
         android:layout_marginBottom="10dp"
 
-        android:backgroundTint="@color/blue2"
+        android:backgroundTint="@color/wallet_dim_foreground_disabled_holo_dark"
         android:paddingStart="8dp"
         android:paddingTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"

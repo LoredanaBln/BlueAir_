@@ -5,21 +5,21 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
+    android:background="@drawable/_e7a93aca230f476c7d2f7490c68bf"
     tools:context=".TicketView">
 
     <ImageView
         android:id="@+id/imageView13"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="363dp"
+        android:layout_height="597dp"
         android:background="@drawable/rounded_corner_dark_blue"
+        android:backgroundTint="@color/wallet_dim_foreground_disabled_holo_dark"
         android:fadingEdge="horizontal|vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/ticketClass"
@@ -36,13 +36,14 @@
         style="@style/blueUnselected"
         android:layout_width="246dp"
         android:layout_height="50dp"
+        android:backgroundTint="@color/white_blue"
         android:text="Add to cart"
         app:layout_constraintBottom_toBottomOf="@+id/imageView13"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        app:layout_constraintVertical_bias="0.828" />
+        app:layout_constraintVertical_bias="0.94" />
 
     <TextView
         android:id="@+id/textView22"
@@ -75,9 +76,9 @@
 
     <TextView
         android:id="@+id/ticketPerson"
+        style="@style/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/titleText"
         android:layout_marginStart="16dp"
         android:text="Loredana"
         android:textColor="@color/white"
@@ -88,9 +89,9 @@
 
     <TextView
         android:id="@+id/textView8"
+        style="@style/simpleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/simpleText"
 
         android:layout_marginStart="40dp"
         android:text="Departure"
@@ -102,11 +103,11 @@
 
     <TextView
         android:id="@+id/textView19"
+        style="@style/simpleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Gate"
-        style="@style/simpleText"
 
         android:textColor="@color/light_blue"
         android:textSize="16sp"
@@ -146,9 +147,9 @@
 
     <TextView
         android:id="@+id/textView9"
+        style="@style/simpleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/simpleText"
         android:layout_marginEnd="44dp"
         android:text="Arrival"
         android:textColor="@color/light_blue"
@@ -214,9 +215,9 @@
         android:id="@+id/imageView7"
         android:layout_width="173dp"
         android:layout_height="171dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="48dp"
-        android:background="#FFFFFF"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ticketDeparture"
         app:srcCompat="@drawable/qr_code" />
