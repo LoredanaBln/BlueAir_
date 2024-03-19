@@ -1,17 +1,14 @@
 
-# Blue Air
-
-Aplicaţie android cu interfaţă grafică care interacţionează cu un
-sistem de gestiune pentru baze de date, oferind funcţionalităţi utilizatorilor corespunzător cu drepturile pe
-care aceştia le dețin în sistem, descries ca niste roluri.
+# Blue Air ✈️
+Android application for a plane ticket booking business, with a user interface written in *XML*, backend using *JAVA* and a local *mySQL* database.
 
 
 ## Features
 
-- Conexiune la baza de date MySQL folosind Java jdbc Driver
-- Utilizarea GooglePay API pentru tranzacții sigure 
-- Interfață de administrator separată de a utilizatorilor
-- Interfață dinamică în funcție de valorile din baza de date
+- ✅ Database connection using JDBC driver.
+- ✅ The use of Goggle Pay API for secure transactions between the users and the database.
+- ✅ Second admin interface for remote database managing.
+- ✅ Dynamic user interface based on stored data.
 
 
 ## Authors
