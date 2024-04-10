@@ -1,4 +1,4 @@
-package com.project;
+package com.project.fragments;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,6 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.project.DBConnectionCredentials;
+import com.project.R;
+import com.project.viewmodel.Ticket;
+import com.project.activities.Activity_login;
+import com.project.adapters.Adapter;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

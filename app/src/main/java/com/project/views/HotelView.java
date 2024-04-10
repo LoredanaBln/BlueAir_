@@ -1,9 +1,13 @@
-package com.project;
+package com.project.views;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.project.DBConnectionCredentials;
+import com.project.viewmodel.Hotel;
+import com.project.R;
 
 //CLASS FOR VIEWING TICKET AFTER CLICKING ON ONE!
 public class HotelView extends AppCompatActivity {

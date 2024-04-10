@@ -1,4 +1,4 @@
-package com.project;
+package com.project.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -17,6 +17,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.project.DBConnectionCredentials;
+import com.project.R;
+import com.project.views.RecyclerViewInterface;
+import com.project.viewmodel.Ticket;
+import com.project.activities.Activity_login;
+import com.project.activities.AddFlightActivity;
+import com.project.adapters.AdapterAdmin;
+
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,7 +34,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment_Modify_database extends Fragment implements RecyclerViewInterface{
+public class Fragment_Modify_database extends Fragment implements RecyclerViewInterface {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";

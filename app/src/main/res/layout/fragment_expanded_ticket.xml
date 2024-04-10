@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/_e7a93aca230f476c7d2f7490c68bf"
-    tools:context=".TicketView">
+    tools:context=".views.TicketView">
 
     <ImageView
         android:id="@+id/imageView13"

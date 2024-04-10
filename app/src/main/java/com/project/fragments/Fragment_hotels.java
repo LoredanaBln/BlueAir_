@@ -1,13 +1,10 @@
-package com.project;
+package com.project.fragments;
 
-import android.health.connect.datatypes.SexualActivityRecord;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +14,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.project.DBConnectionCredentials;
+import com.project.R;
+import com.project.viewmodel.Ticket;
+import com.project.adapters.Adapter;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;

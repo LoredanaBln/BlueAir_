@@ -1,4 +1,4 @@
-package com.project;
+package com.project.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.project.R;
 
 
 public class Main_screen_Activity extends AppCompatActivity {

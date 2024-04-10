@@ -7,7 +7,7 @@
     android:background="@drawable/_e7a5793aca230f476c7d2f7490c68bf"
     android:paddingStart="10dp"
     android:paddingEnd="10dp"
-    tools:context=".Fragment_home">
+    tools:context=".fragments.Fragment_home">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/_e7a5793aca230f476c7d2f7490c68bf"
     android:hapticFeedbackEnabled="true"
-    tools:context=".Main_screen_Activity">
+    tools:context=".activities.Main_screen_Activity">
 
     <Button
         android:id="@+id/buttonUser"

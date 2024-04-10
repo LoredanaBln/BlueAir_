@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:paddingStart="16dp"
     android:paddingTop="48dp"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
 
     <TextView

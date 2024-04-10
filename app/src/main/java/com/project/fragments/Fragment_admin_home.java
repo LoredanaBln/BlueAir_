@@ -1,4 +1,4 @@
-package com.project;
+package com.project.fragments;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -6,11 +6,14 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.project.DBConnectionCredentials;
+import com.project.R;
+import com.project.activities.Activity_login;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

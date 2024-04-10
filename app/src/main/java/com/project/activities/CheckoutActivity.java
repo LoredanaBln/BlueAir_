@@ -1,4 +1,4 @@
-package com.project;
+package com.project.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -17,17 +17,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.wallet.AutoResolveHelper;
 import com.google.android.gms.wallet.PaymentData;
 
+import com.project.DBConnectionCredentials;
 import com.project.R;
-import com.project.util.PaymentsUtil;
 import com.project.viewmodel.CheckoutViewModel;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.Statement;
-import java.util.List;
 import java.util.Locale;
 
 import org.json.JSONException;

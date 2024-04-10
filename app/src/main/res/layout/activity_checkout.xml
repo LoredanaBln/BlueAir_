@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/_e7a5793aca230f476c7d2f7490c68bf"
     android:fillViewport="true"
-    tools:context=".CheckoutActivity">
+    tools:context=".activities.CheckoutActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.project;
+package com.project.fragments;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
@@ -14,17 +14,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.project.DBConnectionCredentials;
+import com.project.R;
+import com.project.views.RecyclerViewInterface;
+import com.project.viewmodel.Ticket;
+import com.project.views.TicketView;
+import com.project.activities.Activity_login;
+import com.project.adapters.AdapterShop;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import kotlin.text.UStringsKt;
 
 public class Fragment_shop extends Fragment implements RecyclerViewInterface {
     private static final String url = "jdbc:mysql://" + DBConnectionCredentials.ip + "/" + DBConnectionCredentials.databaseName + "?characterEncoding=latin1&autoReconnect=true&useSSL=false";

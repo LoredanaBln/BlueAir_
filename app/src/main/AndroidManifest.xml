@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
         <activity
-            android:name=".CheckoutActivity"
+            android:name=".activities.CheckoutActivity"
             android:exported="false"
             android:label="@string/title_activity_checkout"
             android:theme="@style/Theme.Project" />
@@ -33,35 +33,35 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".AddFlightActivity"
+            android:name=".activities.AddFlightActivity"
             android:exported="false" />
         <activity
-            android:name=".HotelView"
+            android:name=".views.HotelView"
             android:exported="false"
             android:label="@string/title_activity_hotel_view"
             android:theme="@style/Theme.Project" />
         <activity
-            android:name=".Activity_Admin"
+            android:name=".activities.Activity_Admin"
             android:exported="true" />
         <activity
-            android:name=".Fragment_admin_home"
+            android:name=".fragments.Fragment_admin_home"
             android:exported="true" />
         <activity
-            android:name=".Fragment_Modify_database"
+            android:name=".fragments.Fragment_Modify_database"
             android:exported="true" />
         <activity
-            android:name=".Main_screen_Activity"
+            android:name=".activities.Main_screen_Activity"
             android:exported="true" />
         <activity
-            android:name=".TicketView"
+            android:name=".views.TicketView"
             android:exported="true" />
         <activity
-            android:name=".Fragment_shop"
+            android:name=".fragments.Fragment_shop"
             android:exported="true"
             android:label="@string/title_activity_shop"
             android:theme="@style/Theme.Project.NoActionBar" />
         <activity
-            android:name=".Activity_login"
+            android:name=".activities.Activity_login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -70,7 +70,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -78,9 +78,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_register" />
+        <activity android:name=".activities.Activity_register" />
         <activity
-            android:name=".Fragment_bookings"
+            android:name=".fragments.Fragment_bookings"
             android:exported="true">
         </activity>
     </application>

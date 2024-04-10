@@ -1,4 +1,4 @@
-package com.project;
+package com.project.viewmodel;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.project;
+package com.project.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -14,6 +14,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.project.fragments.Fragment_Modify_database;
+import com.project.fragments.Fragment_admin_home;
+import com.project.R;
 
 public class Activity_Admin extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -29,7 +32,7 @@ public class Activity_Admin extends AppCompatActivity implements NavigationView.
     }
 
     private void createDropMenu(Bundle savedInstanceState){
-        Toolbar toolbar = findViewById(R.id.toolbar_admin); //Ignore red line errors
+        Toolbar toolbar = findViewById(R.id.toolbar_admin);
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer_layout_admin);
         NavigationView navigationView = findViewById(R.id.nav_view_admin);

@@ -1,10 +1,12 @@
-package com.project;
+package com.project.views;
 
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.project.R;
 
 public class ViewHolder extends RecyclerView.ViewHolder{
     public TextView ticket_depart, ticket_arrival, ticket_date_depart, ticket_date_arrival, ticket_duration;

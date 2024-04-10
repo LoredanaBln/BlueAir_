@@ -1,4 +1,4 @@
-package com.project;
+package com.project.fragments;
 
 import android.app.DatePickerDialog;
 import android.os.AsyncTask;
@@ -13,11 +13,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
+
+import com.project.DBConnectionCredentials;
+import com.project.R;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

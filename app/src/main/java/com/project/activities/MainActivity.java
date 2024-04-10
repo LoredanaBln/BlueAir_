@@ -1,4 +1,4 @@
-package com.project;
+package com.project.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,12 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.project.fragments.Fragment_aboutus;
+import com.project.fragments.Fragment_bookings;
+import com.project.fragments.Fragment_home;
+import com.project.fragments.Fragment_hotels;
+import com.project.R;
+import com.project.fragments.fragment_cart;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private TextView accName, accEmail;

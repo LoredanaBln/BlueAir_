@@ -1,4 +1,4 @@
-package com.project;
+package com.project.fragments;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,7 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
+
+import com.project.DBConnectionCredentials;
+import com.project.viewmodel.Hotel;
+import com.project.views.HotelView;
+import com.project.R;
+import com.project.views.RecyclerViewInterface;
+import com.project.adapters.AdapterHotel;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,7 +34,7 @@ import java.util.List;
  * Use the {@link Fragment_hotels_results#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment_hotels_results extends Fragment implements RecyclerViewInterface{
+public class Fragment_hotels_results extends Fragment implements RecyclerViewInterface {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

@@ -1,26 +1,21 @@
-package com.project;
+package com.project.views;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.project.DBConnectionCredentials;
+import com.project.R;
+import com.project.activities.Activity_login;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.Statement;
 
 //CLASS FOR VIEWING TICKET AFTER CLICKING ON ONE!
 public class TicketView extends AppCompatActivity {

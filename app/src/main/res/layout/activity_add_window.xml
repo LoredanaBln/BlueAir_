@@ -6,7 +6,7 @@
     android:background="@drawable/_e7a93aca230f476c7d2f7490c68bf"
     android:padding="16sp"
     android:scrollbarSize="25sp"
-    tools:context=".AddFlightActivity">
+    tools:context=".activities.AddFlightActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.project;
+package com.project.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.project.DBConnectionCredentials;
+import com.project.R;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;

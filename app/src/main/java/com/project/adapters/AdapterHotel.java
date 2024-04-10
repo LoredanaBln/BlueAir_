@@ -1,4 +1,4 @@
-package com.project;
+package com.project.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.project.viewmodel.Hotel;
+import com.project.R;
+import com.project.views.RecyclerViewInterface;
 
 import java.util.List;
 

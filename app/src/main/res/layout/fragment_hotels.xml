@@ -7,7 +7,7 @@
     android:background="@drawable/_e7a93aca230f476c7d2f7490c68bf"
     android:paddingStart="10dp"
     android:paddingEnd="10dp"
-    tools:context=".Fragment_hotels">
+    tools:context=".fragments.Fragment_hotels">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
